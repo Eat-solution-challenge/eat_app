@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragment_find_amount"
+        android:title="적정량 찾기"
+        android:icon="@color/black" ></item>
+    <item
+        android:id="@+id/fragment_record"
+        android:title="기록하기"
+        android:icon="@color/black" ></item>
+    <item
+        android:id="@+id/fragment_view_record"
+        android:title="기록 보기"
+        android:icon="@color/black" ></item>
+    <item
+        android:id="@+id/fragment_my"
+        android:title="마이"
+        android:icon="@color/black" ></item>
+</menu>
