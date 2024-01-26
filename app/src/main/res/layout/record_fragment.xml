@@ -1,13 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ImageButton
+        android:id="@+id/finish_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ㅎㅇㅎㅇ"
-        android:textColor="@color/white"
+        android:src="@drawable/baseline_done_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1" />
+
+    <TextView
+        android:gravity="start"
+        android:id="@+id/record_date"
+        android:layout_marginTop="30sp"
+        android:layout_marginStart="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01월 20일"
+        android:textColor="#6088BB"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_time"
+        style="@style/Title"
+        android:layout_height="wrap_content"
+        android:text="시간"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/record_date" />
+
+    <TextView
+        android:id="@+id/title_category"
+        style="@style/Title"
+        android:layout_height="wrap_content"
+        android:text="종류"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_time" />
+
+    <TextView
+        android:id="@+id/title_menu"
+        style="@style/Title"
+        android:layout_height="wrap_content"
+        android:text="메뉴명"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_category" />
+
+    <TextView
+        android:id="@+id/title_amount"
+        style="@style/Title"
+        android:layout_height="wrap_content"
+        android:text="섭취량"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_menu" />
+
+    <TextView
+        android:id="@+id/title_satiety"
+        style="@style/Title"
+        android:layout_height="wrap_content"
+        android:text="포만감"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_amount" />
+
+    <TextView
+        android:id="@+id/title_memo"
+        style="@style/Title"
+        android:layout_height="wrap_content"
+        android:text="메모"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_satiety" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="120dp"
         />
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/nutrient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25sp"
+        android:layout_marginTop="33dp"
+        android:text="영양성분"
+        android:textColor="#154878"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_memo" />
+
+    <TextView
+        android:id="@+id/text_total"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:text="총"
+        app:layout_constraintBottom_toBottomOf="@+id/record_calories"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nutrient" />
+
+    <EditText
+        android:id="@+id/record_calories"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@id/text_total"
+        app:layout_constraintStart_toEndOf="@+id/text_total"
+        app:layout_constraintTop_toBottomOf="@id/nutrient" />
+
+    <TextView
+        android:id="@+id/text_calorie"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="kcal"
+        app:layout_constraintBottom_toBottomOf="@+id/text_total"
+        app:layout_constraintStart_toEndOf="@+id/record_calories"
+        app:layout_constraintTop_toBottomOf="@+id/nutrient"
+        app:layout_constraintHorizontal_bias="0" />
+
+    <TextView
+        android:id="@+id/title_carbohydrate"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:text="탄수화물"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_total" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/title_fat"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:text="지방"
+        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintBottom_toBottomOf="@id/title_carbohydrate" />
+
+    <TextView
+        android:id="@+id/title_protein"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:text="단백질"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_carbohydrate" />
+
+    <TextView
+        android:id="@+id/title_sugar"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:text="당류"
+        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/title_carbohydrate" />
+
+    <Button
+        android:id="@+id/button_breakfast"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:text="아침"
+        android:backgroundTint="#F1C550"
+        app:layout_constraintBaseline_toBaselineOf="@+id/title_time"
+        app:layout_constraintStart_toStartOf="@id/guideline1" />
+
+    <Button
+        android:id="@+id/button_lunch"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
+        android:text="점심"
+        android:backgroundTint="#99F96234"
+        app:layout_constraintBottom_toBottomOf="@+id/button_breakfast"
+        app:layout_constraintStart_toEndOf="@id/button_breakfast" />
+
+    <Button
+        android:id="@+id/button_dinner"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
+        android:text="저녁"
+        android:backgroundTint="#CC6088BB"
+        app:layout_constraintBottom_toBottomOf="@+id/button_lunch"
+        app:layout_constraintStart_toEndOf="@id/button_lunch" />
+
+    <Spinner
+        android:id="@+id/spinner_main_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/title_category"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        android:backgroundTint="#80000000"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/major_menu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:hint="떡볶이"
+        app:layout_constraintBottom_toBottomOf="@+id/title_category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinner_main_category"
+        app:layout_constraintTop_toTopOf="@+id/title_category" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:hint="엽기떡볶이"
+        app:layout_constraintBottom_toBottomOf="@+id/title_menu"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/title_menu" />
+
+    <EditText
+        android:id="@+id/record_amount"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/title_amount"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/title_amount" />
+
+    <Spinner
+        android:id="@+id/spinner_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:backgroundTint="#80000000"
+        app:layout_constraintBaseline_toBaselineOf="@+id/record_amount"
+        app:layout_constraintStart_toEndOf="@+id/record_amount" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/title_satiety"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/title_satiety">
+
+        <RadioButton
+            android:id="@+id/satietyButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:background="@android:color/transparent"
+            android:text="과식"
+            android:textColor="@android:color/darker_gray" />
+
+        <RadioButton
+            android:id="@+id/satietyButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:background="@android:color/transparent"
+            android:text="적정"
+            android:textColor="@android:color/darker_gray" />
+
+        <RadioButton
+            android:id="@+id/satietyButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:background="@android:color/transparent"
+            android:text="소식"
+            android:textColor="@android:color/darker_gray" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/record_carbohydrate"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@id/title_carbohydrate"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/title_carbohydrate" />
+
+    <TextView
+        android:id="@+id/text_unit_carbohydrate"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:text="g"
+        app:layout_constraintBottom_toTopOf="@+id/record_protein"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/record_carbohydrate"
+        app:layout_constraintTop_toTopOf="@+id/record_carbohydrate" />
+
+    <EditText
+        android:id="@+id/record_fat"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/title_fat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title_fat"
+        app:layout_constraintTop_toTopOf="@+id/title_fat"
+        app:layout_constraintHorizontal_bias="0.3"  />
+
+    <TextView
+        android:id="@+id/text_unit_fat"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:text="g"
+        app:layout_constraintBottom_toTopOf="@+id/record_protein"
+        app:layout_constraintStart_toEndOf="@+id/record_fat"
+        app:layout_constraintTop_toTopOf="@+id/record_carbohydrate" />
+
+    <EditText
+        android:id="@+id/record_protein"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/title_protein"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/title_protein" />
+
+    <TextView
+        android:id="@+id/text_unit_protein"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:text="g"
+        app:layout_constraintBottom_toBottomOf="@+id/record_protein"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/record_protein"
+        app:layout_constraintTop_toTopOf="@+id/record_protein" />
+
+    <EditText
+        android:id="@+id/record_sugar"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/title_sugar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title_sugar"
+        app:layout_constraintTop_toTopOf="@+id/title_sugar"
+        app:layout_constraintHorizontal_bias="0.3"  />
+
+    <TextView
+        android:id="@+id/text_unit_sugar"
+        style="@style/Nutrient"
+        android:layout_height="wrap_content"
+        android:text="g"
+        app:layout_constraintBottom_toBottomOf="@+id/record_sugar"
+        app:layout_constraintStart_toEndOf="@+id/record_sugar"
+        app:layout_constraintTop_toTopOf="@+id/record_sugar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

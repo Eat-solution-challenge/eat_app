@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="main_category">
+        <item>족발,보쌈</item>
+        <item>돈까스,회,일식</item>
+        <item>고기,구이</item>
+        <item>치킨,피자</item>
+        <item>찜,탕,찌개</item>
+        <item>양식</item>
+        <item>중식</item>
+        <item>아시안</item>
+        <item>백반,죽,국수</item>
+        <item>버거</item>
+        <item>분식</item>
+        <item>카페,디저트</item>
+    </string-array>
+
+    <string-array name="unit">
+        <item>인분</item>
+        <item>g</item>
+        <item>조각</item>
+        <item>그릇</item>
+        <item>개</item>
+        <item>잔</item>
+    </string-array>
+
+</resources>
