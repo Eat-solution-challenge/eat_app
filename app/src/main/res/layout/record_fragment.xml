@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,13 +17,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1" />
 
-    <TextView
-        android:gravity="start"
-        android:id="@+id/record_date"
-        android:layout_marginTop="30sp"
-        android:layout_marginStart="30dp"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/outline_local_dining_24"
+        app:layout_constraintVertical_bias="0.65"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup_time"
+        app:layout_constraintStart_toEndOf="@+id/record_date"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+    <TextView
+        android:id="@+id/record_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30sp"
+        android:gravity="start"
         android:text="01월 20일"
         android:textColor="#6088BB"
         android:textSize="20sp"
@@ -39,6 +47,44 @@
         android:text="시간"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/record_date" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_time"
+        android:layout_width="0dp"
+        android:layout_height="33dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/title_time"
+        app:layout_constraintEnd_toEndOf="@id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/title_time">
+
+        <RadioButton
+            android:id="@+id/radioButton_breakfast"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_breakfast_radio_button"
+            android:layout_marginEnd="20dp"
+            android:text="아침"
+            android:paddingStart="5dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_lunch"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_lunch_radio_button"
+            android:layout_marginEnd="20dp"
+            android:text="점심"
+            android:paddingStart="5dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_dinner"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_dinner_radio_button"
+            android:layout_marginEnd="10dp"
+            android:text="저녁"
+            android:paddingStart="5dp" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/title_category"
@@ -85,15 +131,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="120dp"
-        />
+        app:layout_constraintGuide_begin="120dp" />
 
     <TextView
         android:id="@+id/nutrient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25sp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="45dp"
         android:text="영양성분"
         android:textColor="#154878"
         android:textSize="20sp"
@@ -127,9 +172,9 @@
         android:layout_marginStart="8dp"
         android:text="kcal"
         app:layout_constraintBottom_toBottomOf="@+id/text_total"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/record_calories"
-        app:layout_constraintTop_toBottomOf="@+id/nutrient"
-        app:layout_constraintHorizontal_bias="0" />
+        app:layout_constraintTop_toBottomOf="@+id/nutrient" />
 
     <TextView
         android:id="@+id/title_carbohydrate"
@@ -144,15 +189,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.51" />
 
     <TextView
         android:id="@+id/title_fat"
         style="@style/Nutrient"
         android:layout_height="wrap_content"
         android:text="지방"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
-        app:layout_constraintBottom_toBottomOf="@id/title_carbohydrate" />
+        app:layout_constraintBottom_toBottomOf="@id/title_carbohydrate"
+        app:layout_constraintStart_toStartOf="@id/guideline2" />
 
     <TextView
         android:id="@+id/title_protein"
@@ -170,60 +215,33 @@
         app:layout_constraintStart_toStartOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/title_carbohydrate" />
 
-    <Button
-        android:id="@+id/button_breakfast"
-        android:layout_width="75dp"
-        android:layout_height="40dp"
-        android:text="아침"
-        android:backgroundTint="#F1C550"
-        app:layout_constraintBaseline_toBaselineOf="@+id/title_time"
-        app:layout_constraintStart_toStartOf="@id/guideline1" />
 
-    <Button
-        android:id="@+id/button_lunch"
-        android:layout_width="75dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="15dp"
-        android:text="점심"
-        android:backgroundTint="#99F96234"
-        app:layout_constraintBottom_toBottomOf="@+id/button_breakfast"
-        app:layout_constraintStart_toEndOf="@id/button_breakfast" />
-
-    <Button
-        android:id="@+id/button_dinner"
-        android:layout_width="75dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="15dp"
-        android:text="저녁"
-        android:backgroundTint="#CC6088BB"
-        app:layout_constraintBottom_toBottomOf="@+id/button_lunch"
-        app:layout_constraintStart_toEndOf="@id/button_lunch" />
 
     <Spinner
         android:id="@+id/spinner_main_category"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#80000000"
         app:layout_constraintBaseline_toBaselineOf="@+id/title_category"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        android:backgroundTint="#80000000"/>
+        app:layout_constraintStart_toStartOf="@+id/guideline1" />
 
     <AutoCompleteTextView
         android:id="@+id/major_menu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
         android:hint="떡볶이"
         app:layout_constraintBottom_toBottomOf="@+id/title_category"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/spinner_main_category"
         app:layout_constraintTop_toTopOf="@+id/title_category" />
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
-        android:layout_width="190dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="엽기떡볶이"
         app:layout_constraintBottom_toBottomOf="@+id/title_menu"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toTopOf="@+id/title_menu" />
 
@@ -249,45 +267,52 @@
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/title_satiety"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toTopOf="@+id/title_satiety">
 
         <RadioButton
             android:id="@+id/satietyButton1"
-            android:layout_width="wrap_content"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:background="@android:color/transparent"
-            android:text="과식"
-            android:textColor="@android:color/darker_gray" />
+            android:button="@null"
+            android:background="@drawable/selector_insufficient_radio_button"
+            android:text="소식"
+            android:paddingStart="23dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="#CC47190A" />
 
         <RadioButton
             android:id="@+id/satietyButton2"
-            android:layout_width="wrap_content"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:background="@android:color/transparent"
+            android:button="@null"
+            android:background="@drawable/selector_adequate_radio_button"
+            android:layout_marginEnd="20dp"
             android:text="적정"
-            android:textColor="@android:color/darker_gray" />
+            android:paddingStart="23dp"
+            android:textColor="#0D625E" />
 
         <RadioButton
             android:id="@+id/satietyButton3"
-            android:layout_width="wrap_content"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:background="@android:color/transparent"
-            android:text="소식"
-            android:textColor="@android:color/darker_gray" />
+            android:button="@null"
+            android:background="@drawable/selector_full_radio_button"
+            android:layout_marginEnd="10dp"
+            android:text="과식"
+            android:paddingStart="23dp"
+            android:textColor="#CC8F0900" />
     </RadioGroup>
 
     <EditText
         android:id="@+id/record_carbohydrate"
+        android:background="@drawable/custom_box"
         android:layout_width="79dp"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@id/title_carbohydrate"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
@@ -298,35 +323,43 @@
         style="@style/Nutrient"
         android:layout_height="wrap_content"
         android:text="g"
-        app:layout_constraintBottom_toTopOf="@+id/record_protein"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/record_carbohydrate"
-        app:layout_constraintTop_toTopOf="@+id/record_carbohydrate" />
+        app:layout_constraintBottom_toBottomOf="@+id/record_carbohydrate"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline2"   />
 
     <EditText
         android:id="@+id/record_fat"
+        android:background="@drawable/custom_box"
         android:layout_width="79dp"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/title_fat"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toEndOf="@+id/title_fat"
-        app:layout_constraintTop_toTopOf="@+id/title_fat"
-        app:layout_constraintHorizontal_bias="0.3"  />
+        app:layout_constraintTop_toTopOf="@+id/title_fat" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
 
     <TextView
         android:id="@+id/text_unit_fat"
         style="@style/Nutrient"
         android:layout_height="wrap_content"
         android:text="g"
-        app:layout_constraintBottom_toTopOf="@+id/record_protein"
-        app:layout_constraintStart_toEndOf="@+id/record_fat"
-        app:layout_constraintTop_toTopOf="@+id/record_carbohydrate" />
+        app:layout_constraintBottom_toBottomOf="@+id/record_fat"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
     <EditText
         android:id="@+id/record_protein"
+        android:background="@drawable/custom_box"
         android:layout_width="79dp"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/title_protein"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
@@ -339,19 +372,19 @@
         android:text="g"
         app:layout_constraintBottom_toBottomOf="@+id/record_protein"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/record_protein"
-        app:layout_constraintTop_toTopOf="@+id/record_protein" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
     <EditText
         android:id="@+id/record_sugar"
+        android:background="@drawable/custom_box"
         android:layout_width="79dp"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/title_sugar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toEndOf="@+id/title_sugar"
-        app:layout_constraintTop_toTopOf="@+id/title_sugar"
-        app:layout_constraintHorizontal_bias="0.3"  />
+        app:layout_constraintTop_toTopOf="@+id/title_sugar" />
 
     <TextView
         android:id="@+id/text_unit_sugar"
@@ -359,7 +392,34 @@
         android:layout_height="wrap_content"
         android:text="g"
         app:layout_constraintBottom_toBottomOf="@+id/record_sugar"
-        app:layout_constraintStart_toEndOf="@+id/record_sugar"
-        app:layout_constraintTop_toTopOf="@+id/record_sugar" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="65"
+        app:layout_constraintBottom_toTopOf="@id/nutrient"
+        app:layout_constraintEnd_toStartOf="@id/guideline3"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/title_memo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_memo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="메모를 입력해주세요."
+            android:maxLines="3"
+            android:paddingStart="7dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
