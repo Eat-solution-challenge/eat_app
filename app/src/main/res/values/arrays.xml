@@ -24,4 +24,15 @@
         <item>잔</item>
     </string-array>
 
+    <string-array name="subcategory">
+        <item>떡볶이</item>
+        <item>우동</item>
+        <item>fish</item>
+    </string-array>
+
+    <string-array name="menu">
+        <item>떡볶이</item>
+        <item>shark</item>
+        <item>goldfish</item>
+    </string-array>
 </resources>

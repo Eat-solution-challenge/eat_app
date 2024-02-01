@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setBottomNavigationView(){
+    private fun setBottomNavigationView(){
         binding.bottomNavigationView.setOnItemSelectedListener { item->
             when (item.itemId) {
                 R.id.fragment_find_amount -> {

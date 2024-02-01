@@ -12,6 +12,6 @@ class ViewRecordFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.view_record_fragment,container,false)
+        return inflater.inflate(R.layout.fragment_view_record,container,false)
     }
 }

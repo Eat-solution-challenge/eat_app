@@ -12,6 +12,6 @@ class MyFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.my_fragment,container,false)
+        return inflater.inflate(R.layout.fragment_my,container,false)
     }
 }

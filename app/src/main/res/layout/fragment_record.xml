@@ -5,17 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
+
+    <Button
         android:id="@+id/finish_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_done_24"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#E24E60C1"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="5dp"
+        android:text="기록완료"
+        android:textColor="@color/ic_launcher_background"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.371"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/add_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/gray"
+        android:paddingHorizontal="5dp"
+        android:text="기록추가"
+        android:textColor="#3F51B5"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.671"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -103,7 +127,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title_category" />
 
     <TextView
-        android:id="@+id/title_amount"
+        android:id="@+id/title_consumption"
         style="@style/Title"
         android:layout_height="wrap_content"
         android:text="섭취량"
@@ -116,7 +140,7 @@
         android:layout_height="wrap_content"
         android:text="포만감"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/title_consumption" />
 
     <TextView
         android:id="@+id/title_memo"
@@ -226,17 +250,18 @@
         app:layout_constraintStart_toStartOf="@+id/guideline1" />
 
     <AutoCompleteTextView
-        android:id="@+id/major_menu"
+        android:id="@+id/textView_subcategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="떡볶이"
+        android:completionThreshold="2"
         app:layout_constraintBottom_toBottomOf="@+id/title_category"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/spinner_main_category"
         app:layout_constraintTop_toTopOf="@+id/title_category" />
 
     <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
+        android:id="@+id/textView_menu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="엽기떡볶이"
@@ -246,23 +271,23 @@
         app:layout_constraintTop_toTopOf="@+id/title_menu" />
 
     <EditText
-        android:id="@+id/record_amount"
+        android:id="@+id/record_consumption"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="@+id/title_amount"
+        app:layout_constraintBottom_toBottomOf="@+id/title_consumption"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toTopOf="@id/title_amount" />
+        app:layout_constraintTop_toTopOf="@id/title_consumption" />
 
     <Spinner
         android:id="@+id/spinner_unit"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:backgroundTint="#80000000"
-        app:layout_constraintBaseline_toBaselineOf="@+id/record_amount"
-        app:layout_constraintStart_toEndOf="@+id/record_amount" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/record_consumption"
+        app:layout_constraintStart_toEndOf="@+id/record_consumption" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -418,7 +443,6 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
 

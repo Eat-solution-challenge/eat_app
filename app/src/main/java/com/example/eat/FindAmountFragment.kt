@@ -12,6 +12,6 @@ class FindAmountFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.find_amount_fragment,container,false)
+        return inflater.inflate(R.layout.fragment_find_amount,container,false)
     }
 }
