@@ -32,8 +32,7 @@ class RecordFragment: Fragment() {
         binding.recordDate.text= currentDate.format(formatter) //상단에 기기 날짜 표시
 
         binding.finishRecord.setOnClickListener {
-            saveData()
-            finish()
+            //기록 확인 fragment로
         }
         return binding.root
     }
@@ -41,13 +40,6 @@ class RecordFragment: Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding=null   //바인딩 클래스 인스턴스 정리
-    }
-
-    private fun saveData(){
-        //Toast.makeText(,"기록을 완료했습니다.",Toast.LENGTH_SHORT).show()
-    }
-    private fun finish(){
-        
     }
 
     private fun getTime():String{
