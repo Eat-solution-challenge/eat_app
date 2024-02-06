@@ -11,7 +11,6 @@ import android.widget.RadioGroup
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.replace
 import com.example.eat.databinding.FragmentRecordBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
