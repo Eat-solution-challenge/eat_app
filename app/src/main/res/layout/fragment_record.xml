@@ -273,7 +273,7 @@
         app:layout_constraintStart_toEndOf="@+id/record_consumption" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGroup_satiety"
         android:layout_width="0dp"
         android:layout_height="33dp"
         android:orientation="horizontal"

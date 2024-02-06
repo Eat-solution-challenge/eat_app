@@ -1,19 +1,23 @@
 package com.example.eat
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
-import androidx.core.view.isVisible
+import android.widget.RadioGroup
+import androidx.annotation.NonNull
+import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.replace
 import com.example.eat.databinding.FragmentRecordBinding
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class RecordFragment: Fragment() {
+    private val checkRecordFragment: CheckRecordFragment by lazy { CheckRecordFragment() }
     private var _binding: FragmentRecordBinding?=null
     private val binding get()=_binding!!
 
@@ -32,42 +36,130 @@ class RecordFragment: Fragment() {
         binding.recordDate.text= currentDate.format(formatter) //상단에 기기 날짜 표시
 
         binding.finishRecord.setOnClickListener {
-            //기록 확인 fragment로
+            replaceFragment()   //기록 끝내기
         }
         return binding.root
+    }
+    private fun replaceFragment() {
+        // 미리 생성한 CheckRecordFragment의 arguments를 설정
+        checkRecordFragment.arguments = createArguments()
+
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        //main_container의 CheckRecordFragment로 transaction 한다.
+        transaction.addToBackStack(null)    //back stack에 RecordFrament push
+        transaction.replace(R.id.main_container, checkRecordFragment)
+        transaction.commit()
+    }
+    private fun createArguments(): Bundle {
+        // 새로운 Bundle을 생성하고 RecordFragment에서 얻은 데이터를 저장
+        val args = Bundle()
+        args.putString("time", getTime())
+        args.putString("mainCategory", getMainCategory())
+        args.putString("subCategory", getSubcategory())
+        args.putString("menuName", getMenuName())
+        args.putString("consumption", getConsumption())
+        args.putString("satiety", getSatiety())
+        args.putString("memo", getMemo())
+        return args
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("selectedTime", binding.radioGroupTime.checkedRadioButtonId)
+        outState.putInt("mainCategory",binding.spinnerMainCategory.selectedItemPosition)
+        outState.putString("subCategory", getSubcategory())
+        outState.putString("consumption",binding.recordConsumption.text.toString())
+        outState.putInt("unit",binding.spinnerUnit.selectedItemPosition)
+        outState.putInt("selectedSatiety", binding.radioGroupSatiety.checkedRadioButtonId)
+        outState.putString("memo", getMemo())
+        Log.d(TAG,"!!!!OnSaveInstanceCalled!!!")
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if (savedInstanceState != null) {
+            val selectedTimeId = savedInstanceState.getInt("selectedTime")
+            val mainCategoryPosition = savedInstanceState.getInt("mainCategory")
+            val subCategory = savedInstanceState.getString("subCategory")
+            val consumption = savedInstanceState.getString("consumption")
+            val unitPosition = savedInstanceState.getInt("unit")
+            val selectedSatietyId = savedInstanceState.getInt("selectedSatiety")
+            val memo = savedInstanceState.getString("memo")
+
+            // 선택한 라디오 버튼 상태 복원
+            if (selectedTimeId != -1) {
+                binding.radioGroupTime.check(selectedTimeId)
+            }
+            // 스피너 상태 복원
+            binding.spinnerMainCategory.setSelection(mainCategoryPosition)
+            // 나머지 상태 복원
+
+            // 메모 복원
+            binding.addMemo.setText(memo ?: "")
+        }
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState != null) {
+            val selectedTimeId = savedInstanceState.getInt("selectedTime")
+            val mainCategoryPosition = savedInstanceState.getInt("mainCategory")
+            val subCategory = savedInstanceState.getString("subCategory")
+            val consumption = savedInstanceState.getString("consumption")
+            val unitPosition = savedInstanceState.getInt("unit")
+            val selectedSatietyId = savedInstanceState.getInt("selectedSatiety")
+            val memo = savedInstanceState.getString("memo")
+
+            // 선택한 라디오 버튼 상태 복원
+            if (selectedTimeId != -1) {
+                binding.radioGroupTime.check(selectedTimeId)
+            }
+            // 스피너 상태 복원
+            binding.spinnerMainCategory.setSelection(mainCategoryPosition)
+            // 나머지 상태 복원
+
+            // 메모 복원
+            binding.addMemo.setText(memo ?: "")
+        }
+    }
+    override fun onPause() {
+        super.onPause()
+
+        Log.d("MemoText", "Memo Text: ${getMemo()}") // Logcat에서 memoText 값을 확인합니다.
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding=null   //바인딩 클래스 인스턴스 정리
     }
+    private var savedMemo: String = ""
 
     private fun getTime():String{
-        val time=if(binding.radioButtonBreakfast.isChecked) "breakfast"
-        else if (binding.radioButtonLunch.isChecked) "lunch"
-        else if (binding.radioButtonDinner.isChecked) "dinner"
+        val time=if(binding.radioButtonBreakfast.isChecked) "아침"
+        else if (binding.radioButtonLunch.isChecked) "점심"
+        else if (binding.radioButtonDinner.isChecked) "저녁"
         else ""
         return time
     }
     private fun getMainCategory():String=binding.spinnerMainCategory.selectedItem.toString()
-    private fun getSubcategory():String=binding.textViewSubcategory.toString()
-    private fun getMenuName():String=binding.textViewMenu.toString()
+    private fun getSubcategory():String=binding.textViewSubcategory.text.toString()
+    private fun getMenuName():String=binding.textViewMenu.text.toString()
     private fun getConsumption():String{
-        val consumption=binding.recordConsumption.toString()
+        val consumption=binding.recordConsumption.text.toString()
         val consumptionUnit=binding.spinnerUnit.selectedItem.toString()
         return "$consumption $consumptionUnit"
     }
-    private fun getSatiety():Int{
-        val satiety=if(binding.satietyButton1.isChecked) 0
-        else if (binding.satietyButton2.isChecked) 1
-        else if (binding.satietyButton3.isChecked) 2
+    private fun getSatiety(): String {
+        return if (binding.satietyButton1.isChecked) "소식"
+        else if (binding.satietyButton2.isChecked) "적정"
+        else if (binding.satietyButton3.isChecked) "과식"
         else ""
-        return satiety as Int
     }
-    private fun getMemo():String {  //글자수 넘으면 경고창or 더 못적게
-        val memo=binding.addMemo.toString()
-        if(!memo.isNullOrEmpty())
-            return memo
-        else return ""
+    private fun getMemo():String {  //글자수 넘으면 경고창 or 더 못적게
+        val memo=binding.addMemo.text.toString()
+        return if(!memo.isNullOrEmpty())
+            memo
+        else ""
     }
 }
