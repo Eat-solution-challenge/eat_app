@@ -25,13 +25,14 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/outline_local_dining_24"
-        app:layout_constraintVertical_bias="0.65"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup_time"
         app:layout_constraintStart_toEndOf="@+id/record_date"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65"></ImageView>
 
     <TextView
         android:id="@+id/record_date"
@@ -158,12 +159,12 @@
         style="@style/Nutrient"
         android:layout_height="wrap_content"
         android:text="총"
-        app:layout_constraintBottom_toBottomOf="@+id/record_calories"
+        app:layout_constraintBottom_toBottomOf="@+id/recorded_calories"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nutrient" />
 
     <EditText
-        android:id="@+id/record_calories"
+        android:id="@+id/recorded_calories"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -180,7 +181,7 @@
         android:text="kcal"
         app:layout_constraintBottom_toBottomOf="@+id/text_total"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/record_calories"
+        app:layout_constraintStart_toEndOf="@+id/recorded_calories"
         app:layout_constraintTop_toBottomOf="@+id/nutrient" />
 
     <TextView
@@ -249,9 +250,18 @@
         android:layout_height="wrap_content"
         android:hint="엽기떡볶이"
         app:layout_constraintBottom_toBottomOf="@+id/title_menu"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/button_search"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toTopOf="@+id/title_menu" />
+
+    <ImageView
+        android:id="@+id/button_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/textView_menu"
+        app:layout_constraintBottom_toBottomOf="@id/textView_menu"
+        android:src="@android:drawable/ic_menu_search"/>
 
     <EditText
         android:id="@+id/record_consumption"

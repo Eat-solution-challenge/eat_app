@@ -30,10 +30,21 @@ class RecordFragment: Fragment() {
         binding.spinnerUnit.adapter=ArrayAdapter.createFromResource(requireContext(),R.array.unit,android.R.layout.simple_list_item_1)
         binding.textViewSubcategory.setAdapter(ArrayAdapter.createFromResource(requireContext(),R.array.subcategory,android.R.layout.simple_dropdown_item_1line))//자동완성
         binding.textViewMenu.setAdapter(ArrayAdapter.createFromResource(requireContext(),R.array.menu,android.R.layout.simple_dropdown_item_1line))//자동완성
+
         val currentDate=LocalDate.now() //currentDate에 기록일 저장
         val formatter=DateTimeFormatter.ofPattern("MM월 dd일")
         binding.recordDate.text= currentDate.format(formatter) //상단에 기기 날짜 표시
 
+        binding.buttonSearch.setOnClickListener {
+            //영양성분 검색
+            val menu=binding.textViewMenu.text  //영양 성분 불러오기
+
+            binding.recordedCalories.text=menu    //칼로리 정보 불러오기
+            binding.recordCarbohydrate.text=menu
+            binding.recordFat.text=menu
+            binding.recordProtein.text=menu
+            binding.recordSugar.text=menu
+        }
         binding.finishRecord.setOnClickListener {
             replaceFragment()   //기록 끝내기
         }
@@ -59,6 +70,11 @@ class RecordFragment: Fragment() {
         args.putString("consumption", getConsumption())
         args.putString("satiety", getSatiety())
         args.putString("memo", getMemo())
+        args.putString("calories",getCalories())
+        args.putString("carbohydrate",binding.recordCarbohydrate.text.toString())
+        args.putString("fat",binding.recordFat.text.toString())
+        args.putString("protein",binding.recordProtein.text.toString())
+        args.putString("sugar",binding.recordSugar.text.toString())
         return args
     }
     override fun onSaveInstanceState(outState: Bundle) {
@@ -161,4 +177,5 @@ class RecordFragment: Fragment() {
             memo
         else ""
     }
+    private fun getCalories():String=binding.recordedCalories.text.toString()
 }
