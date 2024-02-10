@@ -1,10 +1,11 @@
-package com.example.eat
+package com.example.eat.Main.Record
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.eat.Main.Record.RecordFragment
 import com.example.eat.databinding.FragmentCheckRecordBinding
 
 class CheckRecordFragment: Fragment() {
@@ -41,6 +42,11 @@ class CheckRecordFragment: Fragment() {
             binding.recordedSatiety.text=satiety
             binding.recordedMenu.text=menuName
             binding.recordedMemo.text=memo
+            binding.recordCalories.setText(calories)
+            binding.recordCarbohydrate.setText(carbohydrate)
+            binding.recordFat.setText(fat)
+            binding.recordProtein.setText(protein)
+            binding.recordSugar.setText(sugar)
 
         }
         binding.saveRecord.setOnClickListener {
@@ -57,7 +63,7 @@ class CheckRecordFragment: Fragment() {
         requireActivity().supportFragmentManager.popBackStack() //checkRecordFragment 나가기
     }
 
-    private fun saveData(){
+    private fun saveData(){ //서버에 저장
 
     }
 }

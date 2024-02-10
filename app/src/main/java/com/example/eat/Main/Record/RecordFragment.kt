@@ -1,4 +1,4 @@
-package com.example.eat
+package com.example.eat.Main.Record
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.RadioGroup
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import com.example.eat.R
 import com.example.eat.databinding.FragmentRecordBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -26,10 +24,16 @@ class RecordFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding=FragmentRecordBinding.inflate(inflater,container,false)
-        binding.spinnerMainCategory.adapter=ArrayAdapter.createFromResource(requireContext(),R.array.main_category,R.layout.custom_spinner_dropdown_item)
-        binding.spinnerUnit.adapter=ArrayAdapter.createFromResource(requireContext(),R.array.unit,android.R.layout.simple_list_item_1)
-        binding.textViewSubcategory.setAdapter(ArrayAdapter.createFromResource(requireContext(),R.array.subcategory,android.R.layout.simple_dropdown_item_1line))//자동완성
-        binding.textViewMenu.setAdapter(ArrayAdapter.createFromResource(requireContext(),R.array.menu,android.R.layout.simple_dropdown_item_1line))//자동완성
+        binding.spinnerMainCategory.adapter=ArrayAdapter.createFromResource(requireContext(),
+            R.array.main_category,
+            R.layout.custom_spinner_dropdown_item
+        )
+        binding.spinnerUnit.adapter=ArrayAdapter.createFromResource(requireContext(),
+            R.array.unit,android.R.layout.simple_list_item_1)
+        binding.textViewSubcategory.setAdapter(ArrayAdapter.createFromResource(requireContext(),
+            R.array.subcategory,android.R.layout.simple_dropdown_item_1line))//자동완성
+        binding.textViewMenu.setAdapter(ArrayAdapter.createFromResource(requireContext(),
+            R.array.menu,android.R.layout.simple_dropdown_item_1line))//자동완성
 
         val currentDate=LocalDate.now() //currentDate에 기록일 저장
         val formatter=DateTimeFormatter.ofPattern("MM월 dd일")
@@ -46,11 +50,11 @@ class RecordFragment: Fragment() {
             binding.recordSugar.text=menu
         }
         binding.finishRecord.setOnClickListener {
-            replaceFragment()   //기록 끝내기
+            toCheckFragment()   //기록 끝내기
         }
         return binding.root
     }
-    private fun replaceFragment() {
+    private fun toCheckFragment() {
         // 미리 생성한 CheckRecordFragment의 arguments를 설정
         checkRecordFragment.arguments = createArguments()
 
@@ -61,7 +65,7 @@ class RecordFragment: Fragment() {
         transaction.commit()
     }
     private fun createArguments(): Bundle {
-        // 새로운 Bundle을 생성하고 RecordFragment에서 얻은 데이터를 저장
+        // 새로운 Bundle을 생성, CheckRecordFragment로 전달할 데이터 저장
         val args = Bundle()
         args.putString("time", getTime())
         args.putString("mainCategory", getMainCategory())
@@ -77,7 +81,7 @@ class RecordFragment: Fragment() {
         args.putString("sugar",binding.recordSugar.text.toString())
         return args
     }
-    override fun onSaveInstanceState(outState: Bundle) {
+    override fun onSaveInstanceState(outState: Bundle) {   //recordFragment가 백스택에 배치될 때
         super.onSaveInstanceState(outState)
         outState.putInt("selectedTime", binding.radioGroupTime.checkedRadioButtonId)
         outState.putInt("mainCategory",binding.spinnerMainCategory.selectedItemPosition)
@@ -89,7 +93,7 @@ class RecordFragment: Fragment() {
         Log.d(TAG,"!!!!OnSaveInstanceCalled!!!")
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+    override fun onViewStateRestored(savedInstanceState: Bundle?) { //recordFragment 복원
         super.onViewStateRestored(savedInstanceState)
         if (savedInstanceState != null) {
             val selectedTimeId = savedInstanceState.getInt("selectedTime")
@@ -114,35 +118,6 @@ class RecordFragment: Fragment() {
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        if (savedInstanceState != null) {
-            val selectedTimeId = savedInstanceState.getInt("selectedTime")
-            val mainCategoryPosition = savedInstanceState.getInt("mainCategory")
-            val subCategory = savedInstanceState.getString("subCategory")
-            val consumption = savedInstanceState.getString("consumption")
-            val unitPosition = savedInstanceState.getInt("unit")
-            val selectedSatietyId = savedInstanceState.getInt("selectedSatiety")
-            val memo = savedInstanceState.getString("memo")
-
-            // 선택한 라디오 버튼 상태 복원
-            if (selectedTimeId != -1) {
-                binding.radioGroupTime.check(selectedTimeId)
-            }
-            // 스피너 상태 복원
-            binding.spinnerMainCategory.setSelection(mainCategoryPosition)
-            // 나머지 상태 복원
-
-            // 메모 복원
-            binding.addMemo.setText(memo ?: "")
-        }
-    }
-    override fun onPause() {
-        super.onPause()
-
-        Log.d("MemoText", "Memo Text: ${getMemo()}") // Logcat에서 memoText 값을 확인합니다.
-
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

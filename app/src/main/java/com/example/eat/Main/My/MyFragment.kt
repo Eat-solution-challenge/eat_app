@@ -1,10 +1,11 @@
-package com.example.eat
+package com.example.eat.Main.My
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.eat.R
 
 class MyFragment: Fragment() {
     override fun onCreateView(

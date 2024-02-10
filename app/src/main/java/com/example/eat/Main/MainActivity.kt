@@ -1,7 +1,12 @@
-package com.example.eat
+package com.example.eat.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.eat.Main.FindAmount.FindAmountFragment
+import com.example.eat.Main.My.MyFragment
+import com.example.eat.Main.Record.RecordFragment
+import com.example.eat.Main.ViewRecord.ViewRecordFragment
+import com.example.eat.R
 import com.example.eat.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
