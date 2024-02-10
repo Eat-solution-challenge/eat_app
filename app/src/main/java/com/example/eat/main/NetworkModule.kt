@@ -1,4 +1,4 @@
-package com.example.eat.Main
+package com.example.eat.main
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

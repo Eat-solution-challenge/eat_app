@@ -1,9 +1,9 @@
-package com.example.eat.Login
+package com.example.eat.login
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.eat.Main.MainActivity
+import com.example.eat.main.MainActivity
 import com.example.eat.databinding.ActivityLoginBinding
 
 
@@ -17,6 +17,10 @@ class LoginActivity : AppCompatActivity() {
         binding.buttonLogin.setOnClickListener{
             val intent=Intent(this,MainActivity::class.java)
             startActivity(intent)   //mainActivity로 이동
+        }
+        binding.buttonRegister.setOnClickListener{
+            val intent=Intent(this,Register1Activity::class.java)
+            startActivity(intent)   //Register1Activity로 이동
         }
     }
 

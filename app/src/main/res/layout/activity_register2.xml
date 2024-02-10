@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="회원가입"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_physicalInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="신체 정보 입력"
+        android:textColor="#65A9F7"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView_age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_login"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/textView_age"
+        style="@style/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="나이"
+        app:layout_constraintStart_toStartOf="@+id/textView_login"
+        app:layout_constraintTop_toBottomOf="@+id/textView_login" />
+
+    <TextView
+        android:id="@+id/textView_ageUnit"
+        style="@style/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="84dp"
+        android:text="세"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@+id/editTextAge"
+        app:layout_constraintTop_toBottomOf="@+id/textView_login" />
+
+    <TextView
+        android:id="@+id/textView_sex"
+        style="@style/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="성별"
+        app:layout_constraintStart_toStartOf="@+id/textView_login"
+        app:layout_constraintTop_toBottomOf="@+id/textView_age" />
+
+    <TextView
+        android:id="@+id/textView_height"
+        style="@style/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="신장"
+        app:layout_constraintStart_toStartOf="@+id/textView_login"
+        app:layout_constraintTop_toBottomOf="@+id/textView_sex" />
+
+    <TextView
+        android:id="@+id/textView_heightUnit"
+        style="@style/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="cm"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_height"
+        app:layout_constraintStart_toEndOf="@+id/editTextAge" />
+
+    <TextView
+        android:id="@+id/textView_weight"
+        style="@style/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="체중"
+        app:layout_constraintStart_toStartOf="@+id/textView_login"
+        app:layout_constraintTop_toBottomOf="@+id/textView_height" />
+
+    <TextView
+        android:id="@+id/textView_weightUnit"
+        style="@style/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="kg"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_weight"
+        app:layout_constraintStart_toEndOf="@+id/editTextAge" />
+
+    <EditText
+        android:id="@+id/editTextAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_login"
+        android:ems="6"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_age"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textView_age" />
+
+    <android.widget.RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_sex"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textView_sex">
+
+        <android.widget.RadioButton
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:background="@drawable/selector_gender_radio_button"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:text="여성"
+            android:textColor="#1B224C"
+            android:textSize="16sp" />
+
+        <android.widget.RadioButton
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/selector_gender_radio_button"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:text="남성"
+            android:textColor="#1B224C"
+            android:textSize="16sp" />
+
+    </android.widget.RadioGroup>
+
+    <EditText
+        android:id="@+id/editText_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_login"
+        android:ems="6"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_height"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textView_height" />
+
+    <EditText
+        android:id="@+id/editText_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_login"
+        android:ems="6"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_weight"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textView_weight" />
+
+    <android.widget.Button
+        android:id="@+id/button_register"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:background="@drawable/button_login"
+        android:text="완료"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="170dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

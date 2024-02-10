@@ -1,11 +1,10 @@
-package com.example.eat.Main.Record
+package com.example.eat.main.Record
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.eat.Main.Record.RecordFragment
 import com.example.eat.databinding.FragmentCheckRecordBinding
 
 class CheckRecordFragment: Fragment() {

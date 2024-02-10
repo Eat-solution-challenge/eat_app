@@ -1,13 +1,10 @@
-package com.example.eat.Main.FindAmount
+package com.example.eat.main.FindAmount
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.eat.Main.Record.RecordFragment
-import com.example.eat.R
-import com.example.eat.databinding.FragmentCheckRecordBinding
 import com.example.eat.databinding.FragmentFindAmountBinding
 
 class FindAmountFragment: Fragment() {
