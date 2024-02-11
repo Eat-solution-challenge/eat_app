@@ -1,4 +1,4 @@
-package com.example.eat.main.My
+package com.example.eat.main.my
 
 import android.os.Bundle
 import android.view.LayoutInflater

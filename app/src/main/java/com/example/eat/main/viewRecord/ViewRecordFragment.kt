@@ -1,4 +1,4 @@
-package com.example.eat.main.ViewRecord
+package com.example.eat.main.viewRecord
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -13,9 +13,27 @@ class Register2Activity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonRegister.setOnClickListener{
+            val userData=JoinRequest(JoinData(
+                intent.getStringExtra("mail")?:"",
+                intent.getStringExtra("nickname")?:"",
+                intent.getStringExtra("password")?:"",
+                binding.editTextHeight.text.toString().toLong()?:0L,
+                binding.editTextWeight.text.toString().toLong()?:0L,
+                getGender(),
+                binding.editTextAge.text.toString().toInt()?:0
+                ))
+            val retrofitWork = RetrofitWork(userData)
+            retrofitWork.work()
+
             val intent= Intent(this, LoginActivity::class.java)
             startActivity(intent)   //activityLogin으로 다시 이동
         }
+    }
+    private fun getGender():String{
+        val gender=if(binding.radioButtonWoman.isChecked) "여성"
+        else if (binding.radioButtonMan.isChecked) "남성"
+        else ""
+        return gender
     }
 
 }

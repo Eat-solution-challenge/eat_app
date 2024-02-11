@@ -1,4 +1,4 @@
-package com.example.eat.main.Record
+package com.example.eat.main.record
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
