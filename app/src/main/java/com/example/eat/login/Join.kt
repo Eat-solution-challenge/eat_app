@@ -62,7 +62,7 @@ object RetrofitAPI {
 interface JoinService{
     @Headers("Content-Type: application/json")
     @POST("/user/join")
-    open fun addUser(@Body data: JoinRequest): Call<JoinResponse>
+    fun addUser(@Body data: JoinRequest): Call<JoinResponse>
 }
 class RetrofitWork(private val userInfo: JoinRequest) {
     fun work() {
