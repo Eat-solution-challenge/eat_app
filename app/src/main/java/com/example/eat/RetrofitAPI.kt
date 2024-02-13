@@ -1,5 +1,8 @@
-package com.example.eat.login
+package com.example.eat
 
+import com.example.eat.login.JoinService
+import com.example.eat.login.LoginService
+import com.example.eat.main.record.RecordService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -38,5 +41,13 @@ object RetrofitAPI {
 
     fun getLoginServiceInstance(): LoginService {
         return loginService
+    }
+
+    private val recordService : RecordService by lazy {
+        retrofit.create(RecordService::class.java)
+    }
+
+    fun getRecordServiceInstance(): RecordService {
+        return recordService
     }
 }

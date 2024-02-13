@@ -76,6 +76,7 @@ class RecordFragment: Fragment() {
         args.putString("subCategory", getSubcategory())
         args.putString("menuName", getMenuName())
         args.putString("consumption", getConsumption())
+        args.putString("consumptionUnit", getConsumptionUnit())
         args.putString("satiety", getSatiety())
         args.putString("memo", getMemo())
         args.putString("calories",getCalories())
@@ -140,11 +141,9 @@ class RecordFragment: Fragment() {
     private fun getMainCategory():String=binding.spinnerMainCategory.selectedItem.toString()
     private fun getSubcategory():String=binding.textViewSubcategory.text.toString()
     private fun getMenuName():String=binding.textViewMenu.text.toString()
-    private fun getConsumption():String{
-        val consumption=binding.recordConsumption.text.toString()
-        val consumptionUnit=binding.spinnerUnit.selectedItem.toString()
-        return "$consumption $consumptionUnit"
-    }
+    private fun getConsumption():String= binding.recordConsumption.text.toString()
+    private fun getConsumptionUnit():String =binding.spinnerUnit.selectedItem.toString()
+
     private fun getSatiety(): String {
         return if (binding.satietyButton1.isChecked) "소식"
         else if (binding.satietyButton2.isChecked) "적정"
