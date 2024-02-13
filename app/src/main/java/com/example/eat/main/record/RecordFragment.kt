@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.example.eat.R
 import com.example.eat.databinding.FragmentRecordBinding
+import com.example.eat.login.JoinData
+import com.example.eat.login.JoinRequest
+import com.example.eat.login.RetrofitWork
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -54,6 +57,7 @@ class RecordFragment: Fragment() {
         }
         return binding.root
     }
+
     private fun toCheckFragment() {
         // 미리 생성한 CheckRecordFragment의 arguments를 설정
         checkRecordFragment.arguments = createArguments()
@@ -116,6 +120,7 @@ class RecordFragment: Fragment() {
             binding.addMemo.setText(memo ?: "")
         }
     }
+
 
 
 

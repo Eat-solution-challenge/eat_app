@@ -2,8 +2,11 @@ package com.example.eat.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eat.databinding.ActivityRegister2Binding
+import retrofit2.Call
+import retrofit2.Response
 
 class Register2Activity : AppCompatActivity() {
     private lateinit var binding: ActivityRegister2Binding
@@ -36,4 +39,25 @@ class Register2Activity : AppCompatActivity() {
         return gender
     }
 
+}
+class RetrofitWork(private val userInfo: JoinRequest) {
+    fun work() {
+        val service = RetrofitAPI.getJoinServiceInstance()
+        service.addUser(userInfo)
+            .enqueue(object : retrofit2.Callback<JoinResponse> {
+                override fun onResponse(
+                    call: Call<JoinResponse>,
+                    response: Response<JoinResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val result = response.body()
+                        Log.d("회원가입 성공", "$result")
+                    }
+                }
+
+                override fun onFailure(call: Call<JoinResponse>, t: Throwable) {
+                    Log.d("회원가입 실패 $t", t.message.toString())
+                }
+            })
+    }
 }
