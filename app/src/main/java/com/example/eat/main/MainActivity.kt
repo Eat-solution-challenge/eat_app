@@ -8,6 +8,7 @@ import com.example.eat.main.record.RecordFragment
 import com.example.eat.main.viewRecord.ViewRecordFragment
 import com.example.eat.R
 import com.example.eat.databinding.ActivityMainBinding
+import com.example.eat.main.calendar.CalendarFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
@@ -37,9 +38,9 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.fragment_view_record -> {
+                R.id.fragment_calendar -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, ViewRecordFragment()).commit()
+                        .replace(R.id.main_container, CalendarFragment()).commit()
                     true
                 }
 
