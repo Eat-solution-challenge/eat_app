@@ -9,7 +9,7 @@
         android:title="기록하기"
         android:icon="@color/black" ></item>
     <item
-        android:id="@+id/fragment_view_record"
+        android:id="@+id/fragment_calendar"
         android:title="기록 보기"
         android:icon="@color/black" ></item>
     <item
