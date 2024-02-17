@@ -3,6 +3,7 @@ package com.example.eat.login
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eat.RetrofitAPI
 import com.example.eat.main.MainActivity
@@ -10,6 +11,7 @@ import com.example.eat.databinding.ActivityLoginBinding
 import retrofit2.Call
 import retrofit2.Response
 
+var token:String=""
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -47,7 +49,12 @@ class RetrofitLogin(private val userInfo: LoginRequest) {
                 ) {
                     if (response.isSuccessful) {
                         val result = response.body()
+                        token=result?.accessToken!!
                         Log.d("로그인 성공", "$result")
+                    }
+                    else {
+                        val result = response.body()
+                        Log.d("비밀번호 오류", "$result")
                     }
                 }
 

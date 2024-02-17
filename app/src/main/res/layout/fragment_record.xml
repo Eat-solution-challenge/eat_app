@@ -14,6 +14,7 @@
         android:backgroundTint="#E24E60C1"
         android:paddingHorizontal="5dp"
         android:paddingVertical="5dp"
+        android:fontFamily="@font/nanumsquareneo_bd"
         android:text="기록완료"
         android:textColor="@color/ic_launcher_background"
         android:textStyle="bold"
@@ -42,6 +43,7 @@
         android:layout_marginTop="30sp"
         android:gravity="start"
         android:text="01월 20일"
+        android:fontFamily="@font/nanumsquareneo_bd"
         android:textColor="#6088BB"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -148,6 +150,7 @@
         android:layout_marginStart="25sp"
         android:layout_marginTop="45dp"
         android:text="영양성분"
+        android:fontFamily="@font/nanumsquareneo_bd"
         android:textColor="#154878"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -230,6 +233,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#80000000"
+        android:fontFamily="@font/kingsejonginstitute_regular"
         app:layout_constraintBaseline_toBaselineOf="@+id/title_category"
         app:layout_constraintStart_toStartOf="@+id/guideline1" />
 
@@ -238,6 +242,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="떡볶이"
+        android:fontFamily="@font/kingsejonginstitute_regular"
         android:completionThreshold="2"
         app:layout_constraintBottom_toBottomOf="@+id/title_category"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -249,6 +254,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="엽기떡볶이"
+        android:fontFamily="@font/kingsejonginstitute_regular"
         app:layout_constraintBottom_toBottomOf="@+id/title_menu"
         app:layout_constraintEnd_toStartOf="@+id/button_search"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
@@ -299,6 +305,7 @@
             android:button="@null"
             android:background="@drawable/selector_insufficient_radio_button"
             android:text="소식"
+            android:fontFamily="@font/nanumsquareneo_bd"
             android:paddingStart="23dp"
             android:layout_marginEnd="20dp"
             android:textColor="#CC47190A" />
@@ -311,6 +318,7 @@
             android:background="@drawable/selector_adequate_radio_button"
             android:layout_marginEnd="20dp"
             android:text="적정"
+            android:fontFamily="@font/nanumsquareneo_bd"
             android:paddingStart="23dp"
             android:textColor="#0D625E" />
 
@@ -321,6 +329,7 @@
             android:button="@null"
             android:background="@drawable/selector_full_radio_button"
             android:layout_marginEnd="10dp"
+            android:fontFamily="@font/nanumsquareneo_bd"
             android:text="과식"
             android:paddingStart="23dp"
             android:textColor="#CC8F0900" />
@@ -429,6 +438,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:hint="메모를 입력해주세요."
+            android:fontFamily="@font/kingsejonginstitute_regular"
             android:maxLines="3"
             android:paddingStart="7dp"
             android:paddingTop="7dp"

@@ -7,12 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.example.eat.R
+import com.example.eat.RetrofitAPI
 import com.example.eat.databinding.FragmentRecordBinding
 import com.example.eat.login.JoinData
 import com.example.eat.login.JoinRequest
 import com.example.eat.login.RetrofitWork
+import com.example.eat.login.token
+import retrofit2.Call
+import retrofit2.Response
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -33,6 +38,11 @@ class RecordFragment: Fragment() {
         )
         binding.spinnerUnit.adapter=ArrayAdapter.createFromResource(requireContext(),
             R.array.unit,android.R.layout.simple_list_item_1)
+
+        // RetrofitCategoryID를 생성하고 서버에서 값을 가져오도록 호출합니다.
+        //val retrofitCategoryID = RetrofitCategoryID(binding.spinnerMainCategory.selectedItemPosition, resources.getStringArray(R.array.subcategory), binding)
+        //retrofitCategoryID.work()
+
         binding.textViewSubcategory.setAdapter(ArrayAdapter.createFromResource(requireContext(),
             R.array.subcategory,android.R.layout.simple_dropdown_item_1line))//자동완성
         binding.textViewMenu.setAdapter(ArrayAdapter.createFromResource(requireContext(),
@@ -103,10 +113,6 @@ class RecordFragment: Fragment() {
         if (savedInstanceState != null) {
             val selectedTimeId = savedInstanceState.getInt("selectedTime")
             val mainCategoryPosition = savedInstanceState.getInt("mainCategory")
-            val subCategory = savedInstanceState.getString("subCategory")
-            val consumption = savedInstanceState.getString("consumption")
-            val unitPosition = savedInstanceState.getInt("unit")
-            val selectedSatietyId = savedInstanceState.getInt("selectedSatiety")
             val memo = savedInstanceState.getString("memo")
 
             // 선택한 라디오 버튼 상태 복원
@@ -158,3 +164,44 @@ class RecordFragment: Fragment() {
     }
     private fun getCalories():String=binding.recordedCalories.text.toString()
 }
+class RetrofitCategoryID(private val categoryId: Int, private val subcategoryArray: Array<String>, private val binding: FragmentRecordBinding) {
+    fun work() {
+        val service = RetrofitAPI.getCategoryIdServiceInstance()
+        service.getRecord(
+            token,
+            categoryId)
+            .enqueue(object : retrofit2.Callback<List<CategoryIDResponse>> {
+                override fun onResponse(
+                    call: Call<List<CategoryIDResponse>>,
+                    response: Response<List<CategoryIDResponse>>
+                ) {
+                    if (response.isSuccessful) {
+                        val serverResponse = response.body()
+                        serverResponse?.let { additionalValues ->
+                            // 기존 리소스 배열을 가져옵니다.
+                            val originalArray = mutableListOf<String>()
+                            originalArray.addAll(subcategoryArray)
+
+                            // 서버에서 가져온 값을 기존 배열에 추가합니다.
+                            additionalValues.forEach { response ->
+                                originalArray.add(response.data.name)
+                            }
+
+                            // 수정된 배열을 사용하여 ArrayAdapter를 생성합니다.
+                            val adapter = ArrayAdapter(
+                                binding.root.context,
+                                android.R.layout.simple_dropdown_item_1line,
+                                originalArray
+                            )
+
+                            binding.textViewSubcategory.setAdapter(adapter)
+                            Log.d("불러오기 성공", "성공")
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<List<CategoryIDResponse>>, t: Throwable) {
+                    Log.d("불러오기 실패 $t", t.message.toString())
+                }
+            })
+    }
+    }
