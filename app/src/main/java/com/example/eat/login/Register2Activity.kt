@@ -3,6 +3,7 @@ package com.example.eat.login
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eat.RetrofitAPI
 import com.example.eat.databinding.ActivityRegister2Binding
@@ -17,20 +18,28 @@ class Register2Activity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonRegister.setOnClickListener{
-            val userData=JoinRequest(JoinData(
-                intent.getStringExtra("mail")?:"",
-                intent.getStringExtra("nickname")?:"",
-                intent.getStringExtra("password")?:"",
-                binding.editTextHeight.text.toString().toLong()?:0L,
-                binding.editTextWeight.text.toString().toLong()?:0L,
-                getGender(),
-                binding.editTextAge.text.toString().toInt()?:0
-                ))
-            val retrofitWork = RetrofitWork(userData)
-            retrofitWork.work()
+            if(binding.editTextHeight.text.isNullOrEmpty()||binding.editTextWeight.text.isNullOrEmpty()||binding.editTextAge.text.isNullOrEmpty()) {
+                Toast.makeText(this@Register2Activity, "신체정보를 전부 기입해주세요.", Toast.LENGTH_SHORT).show()
+                Log.d("info","신체정보 없음")
+            }
+            else {
+                val userData = JoinRequest(
 
-            val intent= Intent(this, LoginActivity::class.java)
-            startActivity(intent)   //activityLogin으로 다시 이동
+                        intent.getStringExtra("email") ?: "",
+                        intent.getStringExtra("nickname") ?: "",
+                        intent.getStringExtra("password") ?: "",
+                        binding.editTextHeight.text.toString().toLong() ?: 0L,
+                        binding.editTextWeight.text.toString().toLong() ?: 0L,
+                        getGender(),
+                        binding.editTextAge.text.toString().toInt() ?: 0
+
+                )
+                val retrofitWork = RetrofitWork(userData)
+                retrofitWork.work()
+
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)   //activityLogin으로 다시 이동
+            }
         }
     }
     private fun getGender():String{

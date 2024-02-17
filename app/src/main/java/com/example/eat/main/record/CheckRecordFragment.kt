@@ -12,6 +12,7 @@ import com.example.eat.RetrofitAPI
 import com.example.eat.databinding.FragmentCheckRecordBinding
 import com.example.eat.login.LoginRequest
 import com.example.eat.login.LoginResponse
+import com.example.eat.login.token
 import com.example.eat.main.MainActivity
 import retrofit2.Call
 import retrofit2.Response
@@ -60,6 +61,7 @@ class CheckRecordFragment: Fragment() {
         }
         binding.saveRecord.setOnClickListener {
             saveData()  //저장
+
             // 백스택에 있는 항목 모두 종료
             requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
@@ -78,13 +80,13 @@ class CheckRecordFragment: Fragment() {
     private fun getCategoryID(): Int{
         return when (val mainCategory = args?.getString("mainCategory", "") ?: "") {
             "분식" -> 1
-            "돈까스,회,일식" -> 2
+            "일식" -> 2
             "한식" -> 3
             "양식" -> 4
             "중식" -> 5
             "아시안" -> 6
             "간식" -> 7
-            "카페,디저트" -> 8
+            "디저트" -> 8
             else -> {
                 // 기본값 또는 에러 처리
                 Log.e("getCategoryID", "Unknown mainCategory: $mainCategory")
@@ -94,19 +96,20 @@ class CheckRecordFragment: Fragment() {
         }
     }
 
-    private fun getLevel(): Int{
+    private fun getLevel(): Int {
         return when (val level = args?.getString("satiety", "") ?: "") {
             "소식" -> 0
             "적정" -> 1
             "과식" -> 2
             else -> {
                 // 기본값 또는 에러 처리
-                Log.e("getCategoryID", "Unknown level")
+                Log.e("getLevel", "Unknown level: $level")
                 // 기본값으로 -1을 반환하거나, 에러 처리에 따라 다른 값을 반환할 수 있습니다.
                 -1
             }
         }
     }
+
     fun toRecordFragment() {
         requireActivity().supportFragmentManager.popBackStack() //checkRecordFragment 나가기
     }
@@ -136,7 +139,7 @@ class RetrofitRecord(private val categoryId: Int, private val recordRequest: Rec
     fun work() {
         val service = RetrofitAPI.getRecordServiceInstance()
         service.postRecord(
-            "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHJpbmciLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzA3NDQzMjcxLCJleHAiOjE3MDc3MDI0NzF9.F-E5_CNTvj6enb-z4TkuDMbHV0PQm-118ZLChJzmIBtyDMpncH9XY4C0Ln99TdmhBfW7FDhKVafU8C_vBAtydg",
+            token,
             categoryId, recordRequest)
             .enqueue(object : retrofit2.Callback<RecordResponse> {
                 override fun onResponse(

@@ -2,7 +2,9 @@ package com.example.eat
 
 import com.example.eat.login.JoinService
 import com.example.eat.login.LoginService
+import com.example.eat.main.record.CategoryIdService
 import com.example.eat.main.record.RecordService
+import com.example.eat.main.my.MyService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -49,5 +51,17 @@ object RetrofitAPI {
 
     fun getRecordServiceInstance(): RecordService {
         return recordService
+    }
+
+    private val categoryIdService : CategoryIdService by lazy {
+        retrofit.create(categoryIdService::class.java)
+    }
+
+    fun getCategoryIdServiceInstance(): CategoryIdService {
+        return categoryIdService
+    }
+
+    fun getMyServiceInstance(): MyService {
+        return retrofit.create(MyService::class.java)
     }
 }
