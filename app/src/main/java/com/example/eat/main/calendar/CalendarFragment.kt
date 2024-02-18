@@ -1,6 +1,8 @@
 package com.example.eat.main.calendar
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +10,9 @@ import androidx.fragment.app.Fragment
 import com.example.eat.R
 import com.example.eat.databinding.FragmentCalendarBinding
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import java.text.SimpleDateFormat
+import com.prolificinteractive.materialcalendarview.DayViewDecorator
+import com.prolificinteractive.materialcalendarview.DayViewFacade
+import java.util.Calendar
 
 
 class CalendarFragment : Fragment() {
@@ -26,7 +30,7 @@ class CalendarFragment : Fragment() {
         _binding = FragmentCalendarBinding.inflate(inflater, container, false)
 
         binding.calendarView.setSelectedDate((CalendarDay.today()))
-
+        binding.calendarView.addDecorators(SundayDecorator(), SaturdayDecorator())
         binding.calendarView.setOnDateChangedListener { widget, date, selected ->
             val args=Bundle()
             args.putInt("year", date.year)
@@ -39,6 +43,31 @@ class CalendarFragment : Fragment() {
 
         return binding.root
     }
+    private class SundayDecorator : DayViewDecorator {
+        override fun shouldDecorate(day: CalendarDay): Boolean {
+            val calendar = day.calendar
+            val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+            return dayOfWeek == Calendar.SUNDAY
+        }
+
+        override fun decorate(view: DayViewFacade) {
+            view.addSpan(object : ForegroundColorSpan(Color.RED) {})
+        }
+    }
+
+    /* 토요일 날짜의 색상을 설정하는 클래스 */
+    private class SaturdayDecorator : DayViewDecorator {
+        override fun shouldDecorate(day: CalendarDay): Boolean {
+            val calendar = day.calendar
+            val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+            return dayOfWeek == Calendar.SATURDAY
+        }
+
+        override fun decorate(view: DayViewFacade) {
+            view.addSpan(object : ForegroundColorSpan(Color.BLUE) {})
+        }
+    }
+
 
     private fun toCalendar2Fragment() {
     // 미리 생성한 CheckRecordFragment의 arguments를 설정
@@ -48,26 +77,6 @@ class CalendarFragment : Fragment() {
         transaction.addToBackStack(null)    //back stack에 RecordFrament push
         transaction.replace(R.id.main_container, calendar2Fragment)
         transaction.commit()
-    }
-
-    fun checkedDay(cYear: Int, cMonth: Int, cDay: Int) {
-        fname = "" + cYear + "-" + (cMonth + 1) + "" + "-" + cDay + ".txt"
-        // 저장할 파일 이름 설정. Ex) 2019-01-20.txt
-
-        try {
-
-            val fis = requireContext().openFileInput(fname) // fname 파일 오픈!!
-
-            val fileData = ByteArray(fis.available()) // fileData에 파이트 형식으로 저장
-            fis.read(fileData) // fileData를 읽음
-            fis.close()
-
-            str = String(fileData) // str 변수에 fileData를 저장
-
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
 
 
