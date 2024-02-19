@@ -2,11 +2,13 @@ package com.example.eat.main.findAmount
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eat.R
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +17,6 @@ import kotlinx.coroutines.CoroutineScope
 class GridRecyclerViewAdapter : RecyclerView.Adapter<GridRecyclerViewAdapter.GridItemViewHolder>() {
     private var gridItemList: List<GridItem>? = null
     private var onItemClickListener: OnItemClickListener? = null
-
     // 아이템 클릭 리스너 인터페이스 정의
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -70,5 +71,23 @@ class GridRecyclerViewAdapter : RecyclerView.Adapter<GridRecyclerViewAdapter.Gri
         }
     }
 
+    class GridSpacingItemDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+            super.getItemOffsets(outRect, view, parent, state)
+            val position = parent.getChildAdapterPosition(view)
+            val spanCount = (parent.layoutManager as GridLayoutManager).spanCount
+            val column = position % spanCount
+            outRect.left = spacing - column * spacing / spanCount
+            outRect.right = (column + 1) * spacing / spanCount
+            if (position >= spanCount) {
+                outRect.top = spacing
+            }
+        }
+    }
+
+    // RecyclerView에 아이템 간격 설정 적용
+    fun applyItemSpacing(recyclerView: RecyclerView, spacing: Int) {
+        recyclerView.addItemDecoration(GridSpacingItemDecoration(spacing))
+    }
 
 }

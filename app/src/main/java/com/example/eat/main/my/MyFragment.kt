@@ -58,6 +58,7 @@ class MyFragment: Fragment() {
                 if (response.isSuccessful) {
                     val myResponse = response.body()
                     if (myResponse != null) {
+                        val nickName = myResponse.nickname!!
                         userName = myResponse.userName!!
                         gender = myResponse.gender!!
                         age = myResponse.age!!
@@ -68,7 +69,7 @@ class MyFragment: Fragment() {
                         lightEat = myResponse.lightEat!!
 
                         //회원 정보 수정
-                        binding.textName.text= userName
+                        binding.textName.text= nickName
                         binding.textGenderAge.text=gender+"/ 만 "+age+"세"
                         binding.textHeightWeight.text=height.toString()+"cm/"+ weight+"세"
 

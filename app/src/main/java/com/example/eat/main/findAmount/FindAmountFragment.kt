@@ -1,19 +1,26 @@
 package com.example.eat.main.findAmount
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.res.Resources
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
+import androidx.recyclerview.widget.RecyclerView
 import com.example.eat.R
 import com.example.eat.databinding.FragmentFindAmountBinding
 import androidx.viewpager2.widget.ViewPager2
+import com.example.eat.databinding.DialogLayoutBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -60,6 +67,12 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
         subscribeObservers()
         autoScrollViewPager()
 
+        //쓰레기양 입력 버튼
+        binding.aboutGarbage.setOnClickListener {
+            setDialog()
+        }
+
+
         // RecyclerView의 아이템 클릭 리스너 설정
         gridRecyclerViewAdapter.setOnItemClickListener(object : GridRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
@@ -80,6 +93,27 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
         return rootView
     }
 
+    //음식물 쓰레기 입력 팝업창 설정
+    private fun setDialog(){
+        val dialogBinding = DialogLayoutBinding.inflate(layoutInflater)
+        val dialogView = dialogBinding.root
+
+        val ad: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        ad.setIcon(R.drawable.garbage_icon)
+        ad.setView(dialogView)
+
+        ad.setPositiveButton("입력 완료") { dialog, which ->
+            val result: String = dialogBinding.editText.text.toString()
+            // 서버에 저장
+            dialog.dismiss()
+        }
+
+        ad.setNegativeButton("돌아가기") { dialog, which ->
+            dialog.dismiss()
+        }
+        ad.show()
+
+    }
 
     private fun initViewPager2() {
         viewPagerAdapter = FindAmountViewPagerAdapter(this@FindAmountFragment)
@@ -103,8 +137,19 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
 
             gridRecyclerViewAdapter.setOnItemClickListener(this@FindAmountFragment)
         }
-    }
+        // RecyclerView에 아이템 간격 설정 적용
+        val spacingInPixels = resources.dpToPx(15) // 20dp를 픽셀 단위로 변환하여 사용
+        binding.gridRecyclerView.addItemDecoration(GridRecyclerViewAdapter.GridSpacingItemDecoration(spacingInPixels))
 
+    }
+    // dp를 픽셀 단위로 변환하는 확장 함수
+    private fun Resources.dpToPx(dp: Int): Int {
+        val density = displayMetrics.density
+        return (dp * density).toInt()
+    }
+    private fun applyItemSpacing(recyclerView: RecyclerView, spacing: Int) {
+        recyclerView.addItemDecoration(GridRecyclerViewAdapter.GridSpacingItemDecoration(spacing))
+    }
     private fun subscribeObservers() {
         viewModel.bannerItemList.observe(viewLifecycleOwner, Observer { bannerItemList ->
             viewPagerAdapter.submitList(bannerItemList)
@@ -140,29 +185,16 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
         fragmentTransaction.commit()
     }
 
-    override fun onPause() {
-        super.onPause()
-        isRunning = false
-    }
-
-    override fun onResume() {
-        super.onResume()
-        isRunning = true
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null // binding 해제
     }
 
-    override fun onClick(v: View) {
-        // 클릭 이벤트 처리
-        // 이 부분은 빈 상태로 둡니다.
+    override fun onBannerItemClicked(bannerItem: BannerItem) {
     }
 
-    override fun onBannerItemClicked(bannerItem: BannerItem) {
-        // 배너 아이템이 클릭되었을 때의 동작
-        // 딱히 추가할 내용 없음
+    override fun onClick(v: View?) {
     }
+
 
 }

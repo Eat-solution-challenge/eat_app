@@ -3,7 +3,7 @@ package com.example.eat.main.findAmount
 import com.example.eat.R
 
 val BannerItemList = listOf(
-    BannerItem(R.drawable.banner_image2),
+    BannerItem(R.drawable.banner_image1),
     BannerItem(R.drawable.banner_image2),
     BannerItem(R.drawable.banner_image_3),
     BannerItem(R.drawable.banner_image4),

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,40 +19,48 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager2"
             android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="116dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.viewpager2.widget.ViewPager2>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/gridRecyclerView"
-            android:layout_width="378dp"
+            android:layout_width="0dp"
             android:layout_height="335dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/rectangle_all_corner_radius"
-            android:nestedScrollingEnabled="false"
-            android:padding="10dp"
             android:clickable="true"
             android:focusable="true"
+            android:nestedScrollingEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewPager2" />
 
         <ImageView
             android:id="@+id/about_garbage"
-            android:layout_width="53dp"
-            android:layout_height="49dp"
-            android:layout_marginBottom="4dp"
+            android:layout_width="35dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="12dp"
             android:src="@drawable/garbage_icon"
             app:layout_constraintBottom_toTopOf="@+id/viewPager2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.952"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_recordWaste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="이번 주 버린 음식물 쓰레기 양 기록하러 가기 ▶"
+            app:layout_constraintBottom_toTopOf="@+id/viewPager2"
+            app:layout_constraintEnd_toStartOf="@+id/about_garbage"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.eat.main.my
 
 class MyResponse (
+    val nickname : String,
     val userName : String,
     val gender : String,
     val age : Int,
