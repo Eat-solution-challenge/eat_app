@@ -51,8 +51,9 @@ class CheckRecordFragment: Fragment() {
             binding.recordedConsumption.text=consumption+" "+consumptionUnit
             binding.recordedSatiety.text=satiety
             binding.recordedMenu.text=menuName
+            binding.nutrient.text=menuName.toString()+"의 영양성분"
             binding.recordedMemo.text=memo
-            binding.recordCalories.setText(calories)
+            binding.recordedCalories.setText(calories)
             binding.recordCarbohydrate.setText(carbohydrate)
             binding.recordFat.setText(fat)
             binding.recordProtein.setText(protein)

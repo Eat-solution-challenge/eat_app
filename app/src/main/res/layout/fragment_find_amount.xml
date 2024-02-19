@@ -2,193 +2,59 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="291dp"
-        android:layout_height="143dp"
-        android:background="@drawable/textoval"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.251" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Just eat"
-        android:textSize="20dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="170dp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="105dp"
-        android:text="하루 평균 발생하는 음식물 쓰레기 양은 "
-        tools:ignore="MissingConstraints" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="116dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="105dp"
-        android:text="약 1만 4885톤입니다."
-        tools:ignore="MissingConstraints" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gridRecyclerView"
+            android:layout_width="378dp"
+            android:layout_height="335dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rectangle_all_corner_radius"
+            android:nestedScrollingEnabled="false"
+            android:padding="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager2" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="105dp"
-        android:text="음식물 쓰레기를 남기지 않기 위해"
-        tools:ignore="MissingConstraints" />
+        <ImageView
+            android:id="@+id/about_garbage"
+            android:layout_width="53dp"
+            android:layout_height="49dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/garbage_icon"
+            app:layout_constraintBottom_toTopOf="@+id/viewPager2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.952"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="105dp"
-        android:text="나의 적정량만큼만 먹는 건 어떨까요?"
-        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="음식"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="302dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/kor_button"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:text="한식"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/jp_button"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:text="일식"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        tools:layout_editor_absoluteY="358dp" />
-
-    <Button
-        android:id="@+id/ch_button"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:text="중식"
-        app:layout_constraintStart_toStartOf="@id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-     />
-
-    <Button
-        android:id="@+id/west_button"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:text="양식"
-        app:layout_constraintBottom_toTopOf="@+id/snack_button"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/kor_button" />
-
-    <Button
-        android:id="@+id/asian_button"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:text="아시안"
-        app:layout_constraintBottom_toTopOf="@+id/etc_button"
-        app:layout_constraintStart_toStartOf="@id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/ch_button"
-        tools:layout_editor_absoluteX="285dp" />
-
-    <Button
-        android:id="@+id/koreansnack_button"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:text="분식"
-        app:layout_constraintBottom_toTopOf="@+id/dessert_button"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/jp_button"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/snack_button"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:text="간식"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toTopOf="@+id/guideline6"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/dessert_button"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:text="디저트"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
-
-    <Button
-        android:id="@+id/etc_button"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:text="기타"
-        app:layout_constraintStart_toStartOf="@id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="53dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="169dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="285dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="358dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="459dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="561dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="이화연"
+        android:textColor="@color/darkblue"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/text1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/kcal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="220dp"
+        android:text="450kcal"
+        android:textColor="@color/lightgreen"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/bf_recorded_menuname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="엽기떡볶이 "
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/kcal"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="가 적정량입니다."
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/kcal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="296dp"
+        android:text="님은"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="21dp" />
+
+
+    <TextView
+        android:id="@+id/name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="이화연"
+        android:textColor="@color/darkblue"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/bf_recorded_menuname"/>
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="16dp"
+        android:text="님의"
+        android:textSize="17dp"
+        app:layout_constraintStart_toEndOf="@+id/name2"
+        app:layout_constraintTop_toTopOf="@+id/name2"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/bf_recorded_subcategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="16dp"
+        android:text="떡볶이"
+        android:textSize="17dp"
+        app:layout_constraintStart_toEndOf="@+id/text3"
+        app:layout_constraintTop_toTopOf="@+id/text3" />
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="식사 기록"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toEndOf="@+id/bf_recorded_subcategory"
+        app:layout_constraintTop_toTopOf="@+id/name2" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="416dp"
+        android:layout_height="335dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.526">
+
+    </ScrollView>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart_consumption"
+        android:layout_width="411dp"
+        android:layout_height="124dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+
+        android:layout_marginTop="10dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="377dp"
+        android:layout_height="171dp"
+        android:background="@drawable/textoval2"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.617"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name2">
+
+        <TextView
+            android:id="@+id/record_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="1월 14일"
+            app:layout_constraintBottom_toTopOf="@+id/menuname3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/menuname3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="엽기떡볶이"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/unit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="1/4통"
+            app:layout_constraintBottom_toTopOf="@+id/textView12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/record_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:text="430kcal"
+            app:layout_constraintStart_toEndOf="@+id/unit"
+            app:layout_constraintTop_toTopOf="@+id/unit" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="메모"
+            android:textColor="@color/darkblue"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.108"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음부터 소세지를 빼고 떡을 더 달라고 해야겠다."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/backbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="28dp"
+        android:text="다시 검색"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
