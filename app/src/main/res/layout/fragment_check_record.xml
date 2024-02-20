@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:background="#9AFFFFFF"
+        android:background="@drawable/record_background"
         android:paddingHorizontal="10dp"
         android:paddingBottom="25dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,22 +20,15 @@
             android:id="@+id/record_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/date_background"
             android:fontFamily="@font/nanumsquareneo_bd"
             android:gravity="start"
             android:text="01월 20일"
-            android:textColor="#6088BB"
+            android:textColor="#99B80606"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/eat1"
-            app:layout_constraintStart_toEndOf="@+id/record_date"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
 
         <TextView
             android:id="@+id/title_time"
@@ -51,8 +43,8 @@
             android:id="@+id/selected_time"
             style="@style/Title"
             android:layout_height="wrap_content"
-            android:text="아침"
             android:fontFamily="@font/kingsejonginstitute_regular"
+            android:text="아침"
             app:layout_constraintBottom_toBottomOf="@id/title_time"
             app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
@@ -66,11 +58,11 @@
 
         <TextView
             android:id="@+id/recorded_category"
+            style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Title"
-            android:text="한식 떡볶이"
             android:fontFamily="@font/kingsejonginstitute_regular"
+            android:text="한식 떡볶이"
             app:layout_constraintBottom_toBottomOf="@+id/title_category"
             app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
@@ -86,8 +78,8 @@
             android:id="@+id/recorded_menu"
             style="@style/Title"
             android:layout_height="wrap_content"
-            android:text="엽기떡볶이"
             android:fontFamily="@font/kingsejonginstitute_regular"
+            android:text="엽기떡볶이"
             app:layout_constraintBottom_toBottomOf="@+id/title_menu"
             app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
@@ -103,8 +95,8 @@
             android:id="@+id/recorded_consumption"
             style="@style/Title"
             android:layout_height="wrap_content"
-            android:text="2인분"
             android:fontFamily="@font/kingsejonginstitute_regular"
+            android:text="2인분"
             app:layout_constraintBottom_toBottomOf="@+id/title_consumption"
             app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
@@ -120,8 +112,8 @@
             android:id="@+id/recorded_satiety"
             style="@style/Title"
             android:layout_height="wrap_content"
-            android:text="과식"
             android:fontFamily="@font/kingsejonginstitute_regular"
+            android:text="과식"
             app:layout_constraintBottom_toBottomOf="@+id/title_satiety"
             app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
@@ -137,9 +129,9 @@
             android:id="@+id/recorded_memo"
             style="@style/Title"
             android:layout_height="wrap_content"
-            android:text="메모메모메모"
-            android:fontFamily="@font/kingsejonginstitute_regular"
             android:layout_marginVertical="0dp"
+            android:fontFamily="@font/kingsejonginstitute_regular"
+            android:text="메모메모메모"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toTopOf="@+id/title_memo" />
 
@@ -161,12 +153,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="#5B8EA7B1"
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="15dp"
+        android:background="#54FFFFFF"
         android:paddingBottom="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -176,9 +167,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/menu_background"
+            android:fontFamily="@font/nanumsquareneo_rg"
             android:paddingTop="8dp"
-            android:fontFamily="@font/nanumsquareneo_bd"
             android:text="영양성분"
             android:textColor="#154878"
             android:textSize="20sp"
@@ -190,8 +182,8 @@
             style="@style/Nutrient"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="총"
             android:fontFamily="@font/nanumsquareneo_rg"
+            android:text="총"
             app:layout_constraintBottom_toBottomOf="@+id/recorded_calories"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nutrient" />
@@ -213,8 +205,8 @@
             style="@style/Nutrient"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="kcal"
             android:fontFamily="@font/nanumsquareneo_bd"
+            android:text="kcal"
             app:layout_constraintBottom_toBottomOf="@+id/text_total"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@+id/recorded_calories"
@@ -256,14 +248,14 @@
 
 
         <TextView
-            style="@style/RecordedNutrient"
             android:id="@+id/record_carbohydrate"
+            style="@style/RecordedNutrient"
             android:layout_width="79dp"
             android:layout_height="28dp"
             android:layout_marginEnd="4dp"
             android:text="5555"
             app:layout_constraintBottom_toBottomOf="@id/title_carbohydrate"
-            app:layout_constraintEnd_toStartOf="@+id/text_unit_carbohydrate"/>
+            app:layout_constraintEnd_toStartOf="@+id/text_unit_carbohydrate" />
 
         <TextView
             android:id="@+id/text_unit_carbohydrate"
@@ -281,7 +273,7 @@
             android:layout_marginEnd="4dp"
             android:text="5555"
             app:layout_constraintBottom_toBottomOf="@+id/title_fat"
-            app:layout_constraintEnd_toStartOf="@+id/text_unit_fat"/>
+            app:layout_constraintEnd_toStartOf="@+id/text_unit_fat" />
 
         <TextView
             android:id="@+id/text_unit_fat"
@@ -300,7 +292,7 @@
             android:layout_marginEnd="4dp"
             android:text="5555"
             app:layout_constraintBottom_toBottomOf="@+id/title_protein"
-            app:layout_constraintEnd_toStartOf="@+id/text_unit_protein"/>
+            app:layout_constraintEnd_toStartOf="@+id/text_unit_protein" />
 
         <TextView
             android:id="@+id/text_unit_protein"
@@ -320,7 +312,7 @@
             android:text="5555"
             app:layout_constraintBottom_toBottomOf="@+id/title_sugar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/text_unit_sugar"/>
+            app:layout_constraintEnd_toStartOf="@+id/text_unit_sugar" />
 
         <TextView
             android:id="@+id/text_unit_sugar"
@@ -340,44 +332,42 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/save_record"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#E24E60C1"
-        android:paddingHorizontal="5dp"
-        android:paddingVertical="5dp"
+        android:background="#832E2420"
+        android:fontFamily="@font/nanumsquareneo_rg"
         android:text="기록저장"
-        android:textColor="@color/ic_launcher_background"
-        android:textStyle="bold"
+        android:textColor="#F6F6F6"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.371"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/edit_record"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="#46FFEB3B"
+        android:fontFamily="@font/nanumsquareneo_rg"
+        android:text="기록수정"
+        android:textColor="#EE2E2420"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/gray"
-        android:paddingHorizontal="5dp"
-        android:text="기록수정"
-        android:textColor="#3F51B5"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.671"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-
-
-
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
