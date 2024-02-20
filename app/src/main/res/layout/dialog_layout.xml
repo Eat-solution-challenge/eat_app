@@ -1,0 +1,43 @@
+<!-- dialog_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#1400BCD4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:text="이번 주 음식물 쓰레기를 몇 L 버렸나요?"
+        android:fontFamily="@font/nanumsquareneo_rg"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="L"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+
+</LinearLayout>

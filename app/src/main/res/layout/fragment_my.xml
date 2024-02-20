@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#1DFFFF27"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="이화연"
-        android:textColor="#6088BB"
+        android:textColor="#B16863"
         android:textSize="21sp"
-        android:fontFamily="@font/kingsejonginstitute_bold"
+        android:fontFamily="@font/nanumsquareneo_rg"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="@+id/guideline8" />
@@ -23,9 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="여성/ 만 24세"
-        android:textColor="@color/black"
+        android:textColor="#EE2E2420"
         android:textSize="20sp"
-        android:fontFamily="@font/kingsejonginstitute_regular"
+        android:fontFamily="@font/nanumsquareneo_rg"
         app:layout_constraintStart_toStartOf="@+id/text_name"
         app:layout_constraintTop_toBottomOf="@+id/text_name" />
 
@@ -35,9 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:text="163cm/50kg"
-        android:textColor="@color/black"
+        android:textColor="#EE2E2420"
         android:textSize="20sp"
-        android:fontFamily="@font/kingsejonginstitute_regular"
+        android:fontFamily="@font/nanumsquareneo_rg"
         app:layout_constraintStart_toStartOf="@+id/text_gender_age"
         app:layout_constraintTop_toBottomOf="@+id/text_gender_age" />
 
@@ -59,7 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="섭취량 현황"
-        android:textColor="@color/black"
+        android:background="@drawable/text_background"
+        android:textColor="#37201F"
         android:textSize="20sp"
         android:fontFamily="@font/nanumsquareneo_rg"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
@@ -80,8 +82,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/kingsejonginstitute_regular"
-        android:text="당신의 노력으로 지난 주보다 3L 적은 음식 폐기물이 \n발생했습니다!"
+        android:fontFamily="@font/nanumsquareneo_rg"
+        android:text="지난 주보다 3L 적은 음식 폐기물이 발생했습니다!"
+        android:background="@drawable/text_background"
         android:textColor="@color/black"
         android:textSize="17.4sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"

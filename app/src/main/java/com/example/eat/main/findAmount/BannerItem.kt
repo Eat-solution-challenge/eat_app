@@ -4,5 +4,5 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 
 data class BannerItem(
-    val image: Drawable // Drawable Int
+    val image: Int // Drawable Int
 )

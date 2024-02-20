@@ -39,16 +39,14 @@ class FindAmountViewPagerAdapter(private val interaction: FindAmountFragment) : 
 
 
     //ViewHolder
-    class BannerViewHolder(itemView: View, private val interaction: Interaction) :
-        RecyclerView.ViewHolder(itemView) {
+    class BannerViewHolder(itemView: View, private val interaction: Interaction): RecyclerView.ViewHolder(itemView) {
         private val ivBannerImage: ImageView = itemView.findViewById(R.id.iv_banner_image)
 
         fun bind(bannerItem: BannerItem) {
             itemView.setOnClickListener {
                 interaction.onBannerItemClicked(bannerItem)
             }
-            ivBannerImage.setImageDrawable(bannerItem.image)
+            ivBannerImage.setImageResource(bannerItem.image)
         }
     }
 }
-
