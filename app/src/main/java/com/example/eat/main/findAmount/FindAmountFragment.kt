@@ -67,12 +67,6 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
         subscribeObservers()
         autoScrollViewPager()
 
-        //쓰레기양 입력 버튼
-        binding.aboutGarbage.setOnClickListener {
-            setDialog()
-        }
-
-
         // RecyclerView의 아이템 클릭 리스너 설정
         gridRecyclerViewAdapter.setOnItemClickListener(object : GridRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
@@ -89,6 +83,11 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
                 fragmentTransaction.commit()
             }
         })
+
+        //쓰레기양 입력 버튼
+        binding.aboutGarbage.setOnClickListener {
+            setDialog()
+        }
 
         return rootView
     }
