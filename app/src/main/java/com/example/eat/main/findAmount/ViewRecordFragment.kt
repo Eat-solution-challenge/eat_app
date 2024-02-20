@@ -94,42 +94,4 @@ class ViewRecordFragment : Fragment() {
 
     }
 
-    // 원형 차트 관련해서
-    private fun setBarChart() {
-        binding.chartConsumption.setUsePercentValues(true)
-
-        // data set
-        val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(33f, "탄수화물"))
-        entries.add(PieEntry(14f, "단백질"))
-        entries.add(PieEntry(33f, "지방"))
-        entries.add(PieEntry(20f, "당"))
-
-        // add a lot of colors
-        val colorsItems = ArrayList<Int>()
-        for (c in ColorTemplate.VORDIPLOM_COLORS) colorsItems.add(c)
-        for (c in ColorTemplate.JOYFUL_COLORS) colorsItems.add(c)
-        for (c in ColorTemplate.COLORFUL_COLORS) colorsItems.add(c)
-        for (c in ColorTemplate.LIBERTY_COLORS) colorsItems.add(c)
-        for (c in ColorTemplate.PASTEL_COLORS) colorsItems.add(c)
-        colorsItems.add(ColorTemplate.getHoloBlue())
-
-        val pieDataSet = PieDataSet(entries, "")
-        pieDataSet.apply {
-            colors = colorsItems
-            valueTextColor = Color.BLACK
-            valueTextSize = 18f
-        }
-
-        val pieData = PieData(pieDataSet)
-        binding.chartConsumption.apply {
-            data = pieData
-            description.isEnabled = false
-            isRotationEnabled = false
-            centerText = null
-            setEntryLabelColor(Color.BLACK)
-            animateY(1400, Easing.EaseInOutQuad)
-            animate()
-        }
-    }
 }
