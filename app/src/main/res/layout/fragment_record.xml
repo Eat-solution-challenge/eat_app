@@ -1,66 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_food"
+    android:background="#1DFFFF27"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <android.widget.Button
         android:id="@+id/finish_record"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:backgroundTint="#E24E60C1"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:textSize="18sp"
+        android:background="#22FFEB3B"
         android:fontFamily="@font/nanumsquareneo_bd"
-        android:paddingHorizontal="5dp"
-        android:paddingVertical="5dp"
-        android:text="기록완료"
-        android:textColor="@color/ic_launcher_background"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="기 록 완 료 하 기"
+        android:layout_marginHorizontal="90dp"
+        android:textColor="#EE2E2420"
+        android:layout_marginVertical="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:background="#FAFFFFFF"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="0dp"
+        android:background="@drawable/record_background"
         android:paddingHorizontal="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:background="@drawable/date_background"
             android:id="@+id/record_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumsquareneo_bd"
+            android:layout_marginTop="0dp"
             android:gravity="start"
             android:text="01월 20일"
-            android:textColor="#6088BB"
+            android:textColor="#99B80606"
             android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/outline_local_dining_24"
-            app:layout_constraintStart_toEndOf="@+id/record_date"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
 
         <TextView
             android:id="@+id/title_time"
             style="@style/Title2"
             android:layout_height="wrap_content"
             android:text="시간"
+            android:fontFamily="@font/nanumsquareneo_rg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/record_date" />
 
@@ -128,18 +120,22 @@
                 android:layout_marginEnd="20dp"
                 android:button="@drawable/selector_breakfast_radio_button"
                 android:gravity="center"
+                android:fontFamily="@font/nanumsquareneo_rg"
                 android:paddingStart="5dp"
+                android:textColor="#E94E5D61"
                 android:text="아침" />
 
             <android.widget.RadioButton
                 android:id="@+id/radioButton_lunch"
                 android:layout_width="72dp"
-                android:layout_height="33dp"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
                 android:button="@drawable/selector_lunch_radio_button"
+                android:fontFamily="@font/nanumsquareneo_rg"
                 android:gravity="center"
                 android:paddingStart="5dp"
-                android:text="점심" />
+                android:text="점심"
+                android:textColor="#E94E5D61" />
 
             <android.widget.RadioButton
                 android:id="@+id/radioButton_dinner"
@@ -148,7 +144,9 @@
                 android:layout_marginEnd="10dp"
                 android:button="@drawable/selector_dinner_radio_button"
                 android:gravity="center"
+                android:fontFamily="@font/nanumsquareneo_rg"
                 android:paddingStart="5dp"
+                android:textColor="#E94E5D61"
                 android:text="저녁" />
 
         </android.widget.RadioGroup>
@@ -172,6 +170,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#80000000"
+            android:textColor="#E94E5D61"
             android:fontFamily="@font/kingsejonginstitute_regular"
             app:layout_constraintBaseline_toBaselineOf="@+id/title_category"
             app:layout_constraintStart_toStartOf="@+id/guideline1" />
@@ -213,6 +212,8 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
+            android:textColor="#E94E5D61"
+            android:fontFamily="@font/nanumsquareneo_rg"
             app:layout_constraintBottom_toBottomOf="@+id/title_consumption"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
@@ -244,7 +245,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/selector_insufficient_radio_button"
                 android:button="@null"
-                android:fontFamily="@font/nanumsquareneo_bd"
+                android:fontFamily="@font/nanumsquareneo_rg"
                 android:paddingStart="23dp"
                 android:text="소식"
                 android:textColor="#CC47190A" />
@@ -256,7 +257,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/selector_adequate_radio_button"
                 android:button="@null"
-                android:fontFamily="@font/nanumsquareneo_bd"
+                android:fontFamily="@font/nanumsquareneo_rg"
                 android:paddingStart="23dp"
                 android:text="적정"
                 android:textColor="#0D625E" />
@@ -268,7 +269,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/selector_full_radio_button"
                 android:button="@null"
-                android:fontFamily="@font/nanumsquareneo_bd"
+                android:fontFamily="@font/nanumsquareneo_rg"
                 android:paddingStart="23dp"
                 android:text="과식"
                 android:textColor="#CC8F0900" />
@@ -300,13 +301,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="#E9FFFFFF"
+        android:background="#54FFFFFF"
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="0dp"
         android:paddingTop="6dp"
-        android:paddingBottom="3dp"
+        android:paddingBottom="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
@@ -315,11 +317,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/menu_background"
             android:text="영양성분"
-            android:textColor="#154878"
+            android:textColor="#7C4945"
             android:textSize="20sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/nanumsquareneo_rg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -327,7 +330,7 @@
             android:id="@+id/text_total"
             style="@style/Nutrient"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:text="총"
             app:layout_constraintBottom_toBottomOf="@+id/recorded_calories"
             app:layout_constraintStart_toStartOf="parent"

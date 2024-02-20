@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.MainActivity"
+    android:background="#1DFFFF27"
     >
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
+        android:layout_width="407dp"
+        android:layout_height="68dp"
+        android:background="@drawable/bottom_nav_round"
+        app:itemIconTint="#F4746B"
+        app:itemTextColor="#D17C76"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

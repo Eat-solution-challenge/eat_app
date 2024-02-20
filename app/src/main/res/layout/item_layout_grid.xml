@@ -15,12 +15,13 @@
 
     <TextView
         android:id="@+id/tv_grid_title"
+        android:background="@drawable/menu_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:textColor="#000"
-        android:textStyle="bold" />
+        android:layout_marginTop="7dp"
+        android:textColor="#EE2E2420"
+        android:fontFamily="@font/nanumsquareneo_bd" />
 
 
 </LinearLayout>

@@ -14,21 +14,21 @@
     <style name="Title2" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginTop">17dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">#E94E5D61</item>
     </style>
 
     <style name="Nutrient" parent="Widget.AppCompat.TextView">
-        <item name="fontFamily">"@font/nanumsquareneo_bd"</item>
+        <item name="fontFamily">"@font/nanumsquareneo_rg"</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">7dp</item>
         <item name="android:layout_marginTop">13dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">#CC154878</item>
+        <item name="android:textColor">#CC4E5D61</item>
     </style>
 
     <style name="RecordedNutrient" parent="Widget.AppCompat.TextView">
