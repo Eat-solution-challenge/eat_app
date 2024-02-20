@@ -1,5 +1,6 @@
 package com.example.eat.main.findAmount
 
+import ViewRecordFragment
 import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log

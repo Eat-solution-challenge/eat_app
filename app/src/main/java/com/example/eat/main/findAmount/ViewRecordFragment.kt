@@ -1,33 +1,46 @@
-package com.example.eat.main.findAmount
-
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat.animate
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.example.eat.R
 import com.example.eat.databinding.FragmentViewRecordBinding
-import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
+import com.example.eat.main.findAmount.AmountRecordFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.eat.main.findAmount.Contacts
 
 class ViewRecordFragment : Fragment() {
+
     private var _binding: FragmentViewRecordBinding? = null
     private val binding get() = _binding!!
     private var args: Bundle? = null
-    // Record 기록 불러오기
-    // ++ 적정량 계산해서 알려주기
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ContactsListAdapter // ContactsListAdapter 임포트 필요
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentViewRecordBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // RecyclerView 참조
+        recyclerView = binding.recyclerView
+
+        // RecyclerView 레이아웃 매니저 설정
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // 어댑터 생성 및 RecyclerView에 연결
+        val contactsList = getListOfContacts() // Contacts 리스트를 가져오는 함수 호출adapter = ContactsListAdapter(contactsList, requireActivity() as FragmentActivity)
+        adapter = ContactsListAdapter(contactsList, requireActivity() as FragmentActivity)
+        recyclerView.adapter = adapter
 
         args = arguments
         if (args != null) {
@@ -41,11 +54,10 @@ class ViewRecordFragment : Fragment() {
         binding.backbutton.setOnClickListener {
             toAmountRecordFragment()
         }
-        return binding.root
     }
 
-    fun toAmountRecordFragment() {
-        val amountRecordFragment = AmountRecordFragment.newInstance(0) // 0은 해당 Fragment에 전달할 position입니다. 적절한 값을 전달하세요.
+    private fun toAmountRecordFragment() {
+        val amountRecordFragment = AmountRecordFragment.newInstance(0)
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, amountRecordFragment)
             .addToBackStack(null)
@@ -57,42 +69,16 @@ class ViewRecordFragment : Fragment() {
         _binding = null
     }
 
-    // 원형 차트 관련해서
-    private fun setBarChart() {
-        binding.chartConsumption.setUsePercentValues(true)
-
-        // data set
-        val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(33f, "탄수화물"))
-        entries.add(PieEntry(14f, "단백질"))
-        entries.add(PieEntry(33f, "지방"))
-        entries.add(PieEntry(20f, "당"))
-
-        // add a lot of colors
-        val colorsItems = ArrayList<Int>()
-        for (c in ColorTemplate.VORDIPLOM_COLORS) colorsItems.add(c)
-        for (c in ColorTemplate.JOYFUL_COLORS) colorsItems.add(c)
-        for (c in ColorTemplate.COLORFUL_COLORS) colorsItems.add(c)
-        for (c in ColorTemplate.LIBERTY_COLORS) colorsItems.add(c)
-        for (c in ColorTemplate.PASTEL_COLORS) colorsItems.add(c)
-        colorsItems.add(ColorTemplate.getHoloBlue())
-
-        val pieDataSet = PieDataSet(entries, "")
-        pieDataSet.apply {
-            colors = colorsItems
-            valueTextColor = Color.BLACK
-            valueTextSize = 18f
-        }
-
-        val pieData = PieData(pieDataSet)
-        binding.chartConsumption.apply {
-            data = pieData
-            description.isEnabled = false
-            isRotationEnabled = false
-            centerText = null
-            setEntryLabelColor(Color.BLACK)
-            animateY(1400, Easing.EaseInOutQuad)
-            animate()
-        }
+    // Contacts 리스트를 가져오는 함수
+    private fun getListOfContacts(): List<Contacts> {
+        return listOf(
+            Contacts("john", "1/4통", "2월 19일", R.drawable.kor),
+            Contacts("mir", "350kcal", "3월 20일", R.drawable.jp),
+            Contacts("delp", "010-3333-4444", "2월 20일", R.drawable.ch),
+            Contacts("jacob", "010-3333-5555", "2월 20일", R.drawable.pasta),
+            Contacts("sheu", "010-3333-6666", "2월 20일", R.drawable.asian),
+            Contacts("ma", "010-3333-7777", "2월 20일", R.drawable.snack),
+            Contacts("ham", "010-3333-8889", "2월 20일", R.drawable.korean_snack)
+        )
     }
 }

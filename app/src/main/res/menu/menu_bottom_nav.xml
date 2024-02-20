@@ -3,17 +3,17 @@
     <item
         android:id="@+id/fragment_find_amount"
         android:title="적정량 찾기"
-        android:icon="@color/black" ></item>
+        android:icon="@drawable/search" ></item>
     <item
         android:id="@+id/fragment_record"
         android:title="기록하기"
-        android:icon="@color/black" ></item>
+        android:icon="@drawable/pencil" ></item>
     <item
         android:id="@+id/fragment_calendar"
         android:title="기록 보기"
-        android:icon="@color/black" ></item>
+        android:icon="@drawable/calendar" ></item>
     <item
         android:id="@+id/fragment_my"
         android:title="마이"
-        android:icon="@color/black" ></item>
+        android:icon="@drawable/user" ></item>
 </menu>

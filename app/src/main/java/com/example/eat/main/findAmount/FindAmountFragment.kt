@@ -1,5 +1,6 @@
 package com.example.eat.main.findAmount
 
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,6 +20,8 @@ import kotlinx.coroutines.launch
 
 // Import the AmountRecordFragment class
 import com.example.eat.main.findAmount.AmountRecordFragment
+import com.example.eat.main.findAmount.BannerItemList
+import com.example.eat.main.findAmount.GridItemList
 
 class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnItemClickListener {
 
@@ -164,5 +167,6 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
         // 배너 아이템이 클릭되었을 때의 동작
         // 딱히 추가할 내용 없음
     }
+
 
 }
