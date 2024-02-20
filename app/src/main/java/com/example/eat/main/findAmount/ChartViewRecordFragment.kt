@@ -17,5 +17,5 @@ class ChartViewRecordFragment : Fragment() {
         }
     }
 
-    // 나머지 Fragment 코드...
+    // 나머지 Fragment 코드…
 }

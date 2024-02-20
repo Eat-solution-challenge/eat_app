@@ -80,6 +80,11 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
             }
         })
 
+        //쓰레기양 입력 버튼
+        binding.aboutGarbage.setOnClickListener {
+            setDialog()
+        }
+
         return rootView
     }
 
