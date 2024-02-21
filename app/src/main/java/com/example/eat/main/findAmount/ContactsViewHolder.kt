@@ -1,3 +1,4 @@
+import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -18,14 +19,15 @@ class ContactsViewHolder(private val binding: ItemContactsBinding, private val f
             val fragmentManager: FragmentManager = fragmentActivity.supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             val fragment = ChartViewRecordFragment.newInstance(
-                item.menuName ?: "", // Nullable String 처리
-                item.amount ?: "", // Nullable String 처리
-                item.createDateStr ?: "", // Nullable String 처리
-                item.mainCategory
+                item.menuName ?: "", // 메뉴 이름
+                item.amount ?: "", // 수량
+                item.createDateStr ?: "", // 날짜
+                item.mainCategory // 메인 카테고리 이미지 리소스 ID
             )
             fragmentTransaction.replace(R.id.main_container, fragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
+
         }
     }
 }
