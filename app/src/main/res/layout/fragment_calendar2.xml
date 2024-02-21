@@ -5,88 +5,342 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/diaryTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="2월 14일"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="20sp"
+    <android.widget.Button
+        android:id="@+id/button_back"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:background="#8BFAF8E0"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="20dp"
+        android:text="돌아가기"
+        android:textColor="#EE2E2420"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="돌아가기"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/record_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/title_breakfast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="아침"
-        style="@style/Title"
-        android:textSize="18sp"
-        android:layout_margin="0dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline_title"
-        app:layout_constraintTop_toTopOf="@+id/guideline_breakfast" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="25dp">
 
-    <TextView
-        android:id="@+id/title_lunch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="점심"
-        style="@style/Title"
-        android:textSize="18sp"
-        android:layout_margin="0dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline_title"
-        app:layout_constraintTop_toTopOf="@+id/guideline_lunch" />
+            <TextView
+                android:id="@+id/record_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/date_background"
+                android:fontFamily="@font/nanumsquareneo_bd"
+                android:gravity="center"
+                android:text="01월 20일"
+                android:textColor="#99B80606"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/title_dinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="저녁"
-        style="@style/Title"
-        android:textSize="18sp"
-        android:layout_margin="0dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline_title"
-        app:layout_constraintTop_toTopOf="@+id/guideline_dinner" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_breakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="52dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_breakfast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="87dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_lunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="256dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_lunch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="292dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_dinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="460dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_dinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="497dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="10dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="40dp" />
+            <TextView
+                android:id="@+id/title_time"
+                style="@style/Title3"
+                android:textColor="#99B80606"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="아침"
+                app:layout_constraintStart_toStartOf="@id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_breakfast" />
 
+            <TextView
+                android:id="@+id/title_menu"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="메뉴명"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_time" />
 
+            <TextView
+                android:id="@+id/recorded_menu"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="엽기떡볶이"
+                app:layout_constraintBottom_toBottomOf="@+id/title_menu"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <TextView
+                android:id="@+id/title_consumption"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="섭취량"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_menu" />
+
+            <TextView
+                android:id="@+id/recorded_consumption"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="2인분"
+                app:layout_constraintBottom_toBottomOf="@+id/title_consumption"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <TextView
+                android:id="@+id/title_satiety"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="포만감"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_consumption" />
+
+            <TextView
+                android:id="@+id/recorded_satiety"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="과식"
+                app:layout_constraintBottom_toBottomOf="@+id/title_satiety"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <TextView
+                android:id="@+id/title_calorie"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="칼로리"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_satiety" />
+
+            <TextView
+                android:id="@+id/recorded_calorie"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="350 kcal"
+                app:layout_constraintTop_toBottomOf="@+id/recorded_satiety"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="120dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="10dp" />
+
+            <TextView
+                android:id="@+id/title_time2"
+                style="@style/Title3"
+                android:textColor="#99B80606"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="점심"
+                app:layout_constraintStart_toStartOf="@id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@id/guideline_lunch" />
+
+            <TextView
+                android:id="@+id/title_menu2"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="메뉴명"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_time2" />
+
+            <TextView
+                android:id="@+id/recorded_menu2"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="엽기떡볶이"
+                app:layout_constraintBottom_toBottomOf="@+id/title_menu2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <TextView
+                android:id="@+id/title_consumption2"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="섭취량"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_menu2" />
+
+            <TextView
+                android:id="@+id/recorded_consumption2"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="2인분"
+                app:layout_constraintBottom_toBottomOf="@+id/title_consumption2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <TextView
+                android:id="@+id/title_satiety2"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="포만감"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_consumption2" />
+
+            <TextView
+                android:id="@+id/recorded_satiety2"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="과식"
+                app:layout_constraintBottom_toBottomOf="@+id/title_satiety2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <TextView
+                android:id="@+id/title_calorie2"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="칼로리"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_satiety2" />
+
+            <TextView
+                android:id="@+id/recorded_calorie2"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="350 kcal"
+                app:layout_constraintTop_toBottomOf="@+id/recorded_satiety2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="350dp" />
+
+            <TextView
+                android:id="@+id/title_time3"
+                style="@style/Title3"
+                android:textColor="#99B80606"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="저녁"
+                app:layout_constraintStart_toStartOf="@id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@id/guideline_dinner" />
+
+            <TextView
+                android:id="@+id/title_menu3"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="메뉴명"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_time3" />
+
+            <TextView
+                android:id="@+id/recorded_menu3"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="엽기떡볶이"
+                app:layout_constraintBottom_toBottomOf="@+id/title_menu3"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <TextView
+                android:id="@+id/title_consumption3"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="섭취량"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_menu3" />
+
+            <TextView
+                android:id="@+id/recorded_consumption3"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="2인분"
+                app:layout_constraintBottom_toBottomOf="@+id/title_consumption3"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <TextView
+                android:id="@+id/title_satiety3"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="포만감"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_consumption3" />
+
+            <TextView
+                android:id="@+id/recorded_satiety3"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="과식"
+                app:layout_constraintBottom_toBottomOf="@+id/title_satiety3"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <TextView
+                android:id="@+id/title_calorie3"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:text="칼로리"
+                app:layout_constraintStart_toStartOf="@+id/guideline_title"
+                app:layout_constraintTop_toBottomOf="@+id/title_satiety3" />
+
+            <TextView
+                android:id="@+id/recorded_calorie3"
+                style="@style/Title3"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kingsejonginstitute_regular"
+                android:text="350 kcal"
+                app:layout_constraintTop_toBottomOf="@+id/recorded_satiety3"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="350dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

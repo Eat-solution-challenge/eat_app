@@ -11,5 +11,6 @@ data class RecordResponse (
     val protein : Double,
     val carbs : Double,
     val sugar : Double,
-    val memo : String
+    val memo : String,
+    val timeslot:String
 )

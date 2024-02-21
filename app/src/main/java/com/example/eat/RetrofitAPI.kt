@@ -2,10 +2,12 @@ package com.example.eat
 
 import com.example.eat.login.JoinService
 import com.example.eat.login.LoginService
+import com.example.eat.main.calendar.CalendarService
 import com.example.eat.main.record.CategoryIdService
 import com.example.eat.main.record.RecordService
 import com.example.eat.main.my.MyService
 import com.example.eat.main.findAmount.ProperAmountService
+import com.example.eat.main.findAmount.WasteService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -70,4 +72,11 @@ object RetrofitAPI {
         return retrofit.create(ProperAmountService::class.java)
     }
 
+    fun getWasteServiceInstance(): WasteService {
+        return retrofit.create(WasteService::class.java)
+    }
+
+    fun getCalendarServiceInstance(): CalendarService {
+        return retrofit.create(CalendarService::class.java)
+    }
 }
