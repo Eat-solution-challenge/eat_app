@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.example.eat.R
@@ -16,7 +17,10 @@ import com.example.eat.login.JoinData
 import com.example.eat.login.JoinRequest
 import com.example.eat.login.RetrofitWork
 import com.example.eat.login.token
+import com.example.eat.main.calendar.CalendarResponse
+import com.example.eat.main.calendar.FiveTuple
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -54,13 +58,8 @@ class RecordFragment: Fragment() {
 
         binding.buttonSearch.setOnClickListener {
             //영양성분 검색
-            val menu=binding.textViewMenu.text  //영양 성분 불러오기
-
-            binding.recordedCalories.text=menu    //칼로리 정보 불러오기
-            binding.recordCarbohydrate.text=menu
-            binding.recordFat.text=menu
-            binding.recordProtein.text=menu
-            binding.recordSugar.text=menu
+            val menu=binding.textViewMenu.text.toString()  //메뉴명 불러오기
+            getCalories(menu)   //서버에서 영양성분 불러오기
         }
         binding.finishRecord.setOnClickListener {
             toCheckFragment()   //기록 끝내기
@@ -89,7 +88,7 @@ class RecordFragment: Fragment() {
         args.putString("consumptionUnit", getConsumptionUnit())
         args.putString("satiety", getSatiety())
         args.putString("memo", getMemo())
-        args.putString("calories",getCalories())
+        args.putString("calories",binding.recordedCalories.text.toString())
         args.putString("carbohydrate",binding.recordCarbohydrate.text.toString())
         args.putString("fat",binding.recordFat.text.toString())
         args.putString("protein",binding.recordProtein.text.toString())
@@ -128,9 +127,6 @@ class RecordFragment: Fragment() {
         }
     }
 
-
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding=null   //바인딩 클래스 인스턴스 정리
@@ -162,46 +158,35 @@ class RecordFragment: Fragment() {
             memo
         else ""
     }
-    private fun getCalories():String=binding.recordedCalories.text.toString()
-}
-class RetrofitCategoryID(private val categoryId: Int, private val subcategoryArray: Array<String>, private val binding: FragmentRecordBinding) {
-    fun work() {
-        val service = RetrofitAPI.getCategoryIdServiceInstance()
-        service.getRecord(
+    private fun getCalories(menu: String) {
+        // Retrofit을 사용하여 API 호출하고 응답 처리
+        RetrofitAPI.getCalorieServiceInstance().getCalorieService(
             token,
-            categoryId)
-            .enqueue(object : retrofit2.Callback<List<CategoryIDResponse>> {
-                override fun onResponse(
-                    call: Call<List<CategoryIDResponse>>,
-                    response: Response<List<CategoryIDResponse>>
-                ) {
-                    if (response.isSuccessful) {
-                        val serverResponse = response.body()
-                        serverResponse?.let { additionalValues ->
-                            // 기존 리소스 배열을 가져옵니다.
-                            val originalArray = mutableListOf<String>()
-                            originalArray.addAll(subcategoryArray)
+            menu
+        ).enqueue(object : Callback<List<CalorieResponse>> {
+            override fun onResponse(
+                call: Call<List<CalorieResponse>>,
+                response: Response<List<CalorieResponse>>
+            ) {
+                if (response.isSuccessful) {
+                    val calorieResponses = response.body()
+                    if (calorieResponses != null && calorieResponses.isNotEmpty()) {
 
-                            // 서버에서 가져온 값을 기존 배열에 추가합니다.
-                            additionalValues.forEach { response ->
-                                originalArray.add(response.data.name)
-                            }
+                        binding.recordedCalories.setText(calorieResponses[0].calorie.toString())
+                        binding.recordSugar.setText(calorieResponses[0].sugar.toString())
+                        binding.recordProtein.setText(calorieResponses[0].protein.toString())
+                        binding.recordFat.setText(calorieResponses[0].fat.toString())
+                        binding.recordCarbohydrate.setText(calorieResponses[0].carbs.toString())
 
-                            // 수정된 배열을 사용하여 ArrayAdapter를 생성합니다.
-                            val adapter = ArrayAdapter(
-                                binding.root.context,
-                                android.R.layout.simple_dropdown_item_1line,
-                                originalArray
-                            )
-
-                            binding.textViewSubcategory.setAdapter(adapter)
-                            Log.d("불러오기 성공", "성공")
-                        }
+                    } else {
+                        Log.d("데이터 로드 성공", "데이터 로드 성공")
                     }
+                } else {
+                    Log.e("데이터 로드 실패", "응답이 실패했습니다.")
                 }
-                override fun onFailure(call: Call<List<CategoryIDResponse>>, t: Throwable) {
-                    Log.d("불러오기 실패 $t", t.message.toString())
-                }
-            })
-    }
-    }
+            }
+            override fun onFailure(call: Call<List<CalorieResponse>>, t: Throwable) {
+                Log.e("실패", t.message.toString())
+            }
+        })
+    }}

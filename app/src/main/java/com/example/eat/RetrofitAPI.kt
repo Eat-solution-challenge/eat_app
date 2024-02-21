@@ -8,6 +8,7 @@ import com.example.eat.main.record.RecordService
 import com.example.eat.main.my.MyService
 import com.example.eat.main.findAmount.ProperAmountService
 import com.example.eat.main.findAmount.WasteService
+import com.example.eat.main.record.CalorieService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -78,5 +79,9 @@ object RetrofitAPI {
 
     fun getCalendarServiceInstance(): CalendarService {
         return retrofit.create(CalendarService::class.java)
+    }
+
+    fun getCalorieServiceInstance(): CalorieService {
+        return retrofit.create(CalorieService::class.java)
     }
 }
