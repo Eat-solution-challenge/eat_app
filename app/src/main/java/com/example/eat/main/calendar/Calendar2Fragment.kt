@@ -89,12 +89,22 @@ class Calendar2Fragment : Fragment() {
                                 consumption.visibility = View.GONE
                                 satiety.visibility = View.GONE
                                 calorie.visibility = View.GONE
-                                Toast.makeText(requireContext(),"기록이 없습니다.", Toast.LENGTH_SHORT).show()
+                                binding.titleCalorie.visibility = View.GONE
+                                binding.titleCalorie2.visibility = View.GONE
+                                binding.titleCalorie3.visibility = View.GONE
+                                binding.titleConsumption.visibility = View.GONE
+                                binding.titleConsumption2.visibility = View.GONE
+                                binding.titleConsumption3.visibility = View.GONE
+                                binding.titleMenu.visibility = View.GONE
+                                binding.titleMenu2.visibility = View.GONE
+                                binding.titleMenu3.visibility = View.GONE
+                                binding.titleSatiety.visibility = View.GONE
+                                binding.titleSatiety2.visibility = View.GONE
+                                binding.titleSatiety3.visibility = View.GONE
                             }
                         }
                         Log.d("데이터 로드 성공", "데이터 로드 성공")
                     } else {
-
                         Log.e("데이터 로드 실패", "응답 데이터가 null이거나 비어 있습니다.")
                     }
                 } else {

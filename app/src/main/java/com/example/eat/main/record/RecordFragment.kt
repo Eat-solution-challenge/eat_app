@@ -62,7 +62,18 @@ class RecordFragment: Fragment() {
             getCalories(menu)   //서버에서 영양성분 불러오기
         }
         binding.finishRecord.setOnClickListener {
+            if(binding.recordCarbohydrate.text.isNotBlank()
+                &&binding.recordProtein.text.isNotBlank()
+                &&binding.recordCarbohydrate.text.isNotBlank()
+                &&binding.recordConsumption.text.isNotBlank()
+                &&binding.recordFat.text.isNotBlank()
+                &&binding.recordSugar.text.isNotBlank()
+                &&binding.recordedCalories.text.isNotBlank()
+                &&(binding.radioGroupTime.checkedRadioButtonId!=-1)
+                &&(binding.radioGroupSatiety.checkedRadioButtonId!=-1))
             toCheckFragment()   //기록 끝내기
+            else
+                Toast.makeText(context,"내용을 전부 기입해주세요.",Toast.LENGTH_SHORT).show()
         }
         return binding.root
     }
@@ -179,7 +190,7 @@ class RecordFragment: Fragment() {
                         binding.recordCarbohydrate.setText(calorieResponses[0].carbs.toString())
 
                     } else {
-                        Log.d("데이터 로드 성공", "데이터 로드 성공")
+                        Toast.makeText(requireContext(),"저장된 영양성분 값이 없습니다.",Toast.LENGTH_SHORT)
                     }
                 } else {
                     Log.e("데이터 로드 실패", "응답이 실패했습니다.")

@@ -80,7 +80,7 @@ class MyFragment: Fragment() {
                         //회원 정보 수정
                         binding.textName.text= nickName
                         binding.textGenderAge.text=gender+"/ 만 "+age+"세"
-                        binding.textHeightWeight.text=height.toString()+"cm/"+ weight+"세"
+                        binding.textHeightWeight.text=height.toString()+"cm/"+ weight+"kg"
 
                         //폐기물 양 비교 문구 수정
                         var change= lastWeekTrashAmount-thisWeekTrashAmount

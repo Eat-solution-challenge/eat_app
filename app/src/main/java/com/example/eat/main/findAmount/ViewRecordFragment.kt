@@ -114,7 +114,7 @@ class ViewRecordFragment : Fragment() {
                             val myResponse = response.body()
                             if (myResponse != null) {
                                 //회원 정보 수정
-                                binding.kcal.text = myResponse.properAmount
+                                binding.kcal.text = Math.round(myResponse.properAmount.toDouble()).toString()+" kcal"
                                 Log.d("데이터 로드 성공", "데이터 로드 성공")
                             } else {
                                 Log.e("데이터 로드 실패", "응답 데이터가 null입니다.")
