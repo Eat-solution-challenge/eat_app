@@ -1,21 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chart_view"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_container"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/background"
         android:layout_width="338dp"
         android:layout_height="211dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="136dp"
         android:background="@drawable/bottom_nav_round"
         android:backgroundTint="#22FFEB3B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:text="01월 01일"
+            android:textColor="#E24E60C1"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.134"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/maincategory_picture"
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="12dp"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateTextView"
+            app:srcCompat="@drawable/korean_snack" />
+
+        <TextView
+            android:id="@+id/menuname2"
+            android:layout_width="142dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="80dp"
+            android:text="엽기 떡볶이"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/maincategory_picture" />
+
+        <TextView
+            android:id="@+id/amountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="4dp"
+            android:layout_toStartOf="@+id/dateTextView"
+            android:text="1/4통"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/maincategory_picture"
+            app:layout_constraintStart_toStartOf="@+id/menuname2" />
+
+        <TextView
+            android:id="@+id/memoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginBottom="1dp"
+            android:text="메모"
+            android:textColor="#E24E60C1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/memoTextView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/memoTextView"
+            android:layout_width="305dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="4dp"
+            android:text="다음 번에는 떡볶이를 더 달라고 해야겠다."
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.647"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart_consumptionHistory"
+        android:layout_width="341dp"
+        android:layout_height="169dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/background"
+        app:layout_constraintVertical_bias="0.193"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
