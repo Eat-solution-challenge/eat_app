@@ -1,54 +1,34 @@
-package com.example.eat.main.findAmount
-
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.res.Resources
+import android.graphics.Color
 import android.os.Bundle
-import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenResumed
-import androidx.recyclerview.widget.RecyclerView
-import com.example.eat.R
-import com.example.eat.databinding.FragmentFindAmountBinding
-import androidx.viewpager2.widget.ViewPager2
-import com.example.eat.RetrofitAPI
-import com.example.eat.databinding.DialogLayoutBinding
-import com.example.eat.login.token
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.utils.ColorTemplate
+import com.example.eat.databinding.FragmentChartViewRecordBinding
 
-// Import the AmountRecordFragment class
-import com.example.eat.main.findAmount.AmountRecordFragment
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+class FindAmountFragment : Fragment() {
 
-class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnItemClickListener {
-
-    private lateinit var viewPagerAdapter: FindAmountViewPagerAdapter
-    private lateinit var gridRecyclerViewAdapter: GridRecyclerViewAdapter
-    private lateinit var viewModel: FIndAmountViewModel
-    private var _binding: FragmentFindAmountBinding? = null
+    private var _binding: FragmentChartViewRecordBinding? = null
     private val binding get() = _binding!!
-    private var isRunning = true
 
     companion object {
-        private const val ARG_POSITION = "position"
-
-        fun newInstance(position: Int): FindAmountFragment {
-            val fragment = FindAmountFragment()
+        fun newInstance(
+            menuName: String,
+            amount: String,
+            createDate: String,
+            mainCategory: Int
+        ): ChartViewRecordFragment {
+            val fragment = ChartViewRecordFragment()
             val args = Bundle()
-            args.putInt(ARG_POSITION, position)
+            args.putString("menuName", menuName)
+            args.putString("amount", amount)
+            args.putString("createDate", createDate)
+            args.putInt("mainCategory", mainCategory)
             fragment.arguments = args
             return fragment
         }
@@ -58,171 +38,52 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentFindAmountBinding.inflate(inflater, container, false)
-        val rootView = binding.root
-
-        // ViewModel 초기화 및 옵저버 등록
-        viewModel = ViewModelProvider(this).get(FIndAmountViewModel::class.java)
-
-        viewModel.setBannerItems(BannerItemList)
-        viewModel.setGridItems(GridItemList)
-
-        initViewPager2() // ViewPager2 초기화를 onCreateView에서 호출하도록 이동
-        initRecyclerView()
-        subscribeObservers()
-        autoScrollViewPager()
-
-        // RecyclerView의 아이템 클릭 리스너 설정
-        gridRecyclerViewAdapter.setOnItemClickListener(object : GridRecyclerViewAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                // RecyclerView의 아이템이 클릭되었을 때 실행되는 코드를 여기에 추가
-                // 예: 원하는 동작을 수행하거나 다음 화면으로 이동하는 등의 작업을 수행
-                // 예를 들어, 클릭된 아이템의 위치를 로그로 출력하려면 다음과 같이 작성할 수 있습니다.
-                Log.d("RecyclerView", "Clicked item at position $position")
-
-                // 클릭된 아이템의 위치에 해당하는 AmountRecordFragment를 띄웁니다.
-                val fragmentManager = requireActivity().supportFragmentManager
-                val fragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.main_container, AmountRecordFragment.newInstance(position))
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
-            }
-        })
-
-        //쓰레기양 입력 버튼
-        binding.aboutGarbage.setOnClickListener {
-            setDialog()
-        }
-
-        return rootView
+    ): View {
+        _binding = FragmentChartViewRecordBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    //음식물 쓰레기 입력 팝업창 설정
-    private fun setDialog(){
-        val dialogBinding = DialogLayoutBinding.inflate(layoutInflater)
-        val dialogView = dialogBinding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val ad: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        ad.setIcon(R.drawable.garbage_icon)
-        ad.setView(dialogView)
-
-        ad.setPositiveButton("입력 완료") { dialog, which ->
-            val result: String = dialogBinding.editText.text.toString()
-            // 서버에 저장
-            postWasteOnServer(result.toDouble())
-            dialog.dismiss()
-        }
-
-        ad.setNegativeButton("돌아가기") { dialog, which ->
-            dialog.dismiss()
-        }
-        ad.show()
-
-    }
-
-    private fun initViewPager2() {
-        viewPagerAdapter = FindAmountViewPagerAdapter(this@FindAmountFragment)
-        val viewPager2: ViewPager2 = binding.viewPager2 // binding을 통해 View 참조 가져오도록 수정
-        viewPager2.adapter = viewPagerAdapter // adapter를 설정하도록 수정
-
-        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                isRunning = true
-                viewModel.setCurrentPosition(position)
-            }
-        })
-    }
-    private fun postWasteOnServer(waste:Double){
-        RetrofitAPI.getWasteServiceInstance().postWaste(
-            token,RequestWaste(waste)
-        ).enqueue(object : Callback<ResponseWaste> {
-            override fun onResponse(call: Call<ResponseWaste>, response: Response<ResponseWaste>) {
-                if (response.isSuccessful) {
-                    val myResponse = response.body()
-                    if (myResponse != null) {
-                        Toast.makeText(requireContext(),"저장을 완료했습니다.",Toast.LENGTH_SHORT).show()
-                        Log.d("데이터 로드 성공", "데이터 로드 성공")
-                    } else {
-                        Log.e("데이터 로드 실패", "응답 데이터가 null입니다.")
-                    }
-                } else {
-                    Log.e("데이터 로드 실패", "응답이 실패했습니다.")
-                }
-            }
-            override fun onFailure(call: Call<ResponseWaste>, t: Throwable) {
-                Log.e("실패 $t", t.message.toString())
-            }
-        })
-    }
-
-    private fun initRecyclerView() {
-        binding.gridRecyclerView.apply {
-            gridRecyclerViewAdapter = GridRecyclerViewAdapter()
-            layoutManager = GridLayoutManager(requireContext(), 3)
-            adapter = gridRecyclerViewAdapter
-
-            gridRecyclerViewAdapter.setOnItemClickListener(this@FindAmountFragment)
-        }
-        // RecyclerView에 아이템 간격 설정 적용
-        val spacingInPixels = resources.dpToPx(15) // 20dp를 픽셀 단위로 변환하여 사용
-        binding.gridRecyclerView.addItemDecoration(GridRecyclerViewAdapter.GridSpacingItemDecoration(spacingInPixels))
-
-    }
-    // dp를 픽셀 단위로 변환하는 확장 함수
-    private fun Resources.dpToPx(dp: Int): Int {
-        val density = displayMetrics.density
-        return (dp * density).toInt()
-    }
-    private fun applyItemSpacing(recyclerView: RecyclerView, spacing: Int) {
-        recyclerView.addItemDecoration(GridRecyclerViewAdapter.GridSpacingItemDecoration(spacing))
-    }
-    private fun subscribeObservers() {
-        viewModel.bannerItemList.observe(viewLifecycleOwner, Observer { bannerItemList ->
-            viewPagerAdapter.submitList(bannerItemList)
-        })
-
-        viewModel.gridItemList.observe(viewLifecycleOwner, { gridItemList ->
-            gridRecyclerViewAdapter.submitList(gridItemList)
-        })
-
-        viewModel.currentPosition.observe(viewLifecycleOwner, Observer { currentPosition ->
-            binding.viewPager2.currentItem = currentPosition
-        })
-    }
-
-    private fun autoScrollViewPager() {
-        lifecycleScope.launch {
-            whenResumed {
-                while (isRunning) {
-                    delay(3000)
-                    viewModel.getCurrentPosition()?.let {
-                        viewModel.setCurrentPosition((it.plus(1)) % 5)
-                    }
-                }
-            }
-        }
-    }
-
-    override fun onItemClick(position: Int) {
-        val fragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_container, AmountRecordFragment.newInstance(position))
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        // 차트 설정
+        setPieChart()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null // binding 해제
+        _binding = null
     }
 
-    override fun onBannerItemClicked(bannerItem: BannerItem) {
+    private fun setPieChart() {
+        binding.chartConsumptionHistory.setUsePercentValues(true)
+
+        val entries = ArrayList<PieEntry>()
+        entries.add(PieEntry(30f, "탄수화물"))
+        entries.add(PieEntry(40f, "단백질"))
+        entries.add(PieEntry(30f, "지방"))
+
+        val colors = mutableListOf<Int>()
+        for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
+        for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
+        for (c in ColorTemplate.COLORFUL_COLORS) colors.add(c)
+        for (c in ColorTemplate.LIBERTY_COLORS) colors.add(c)
+        for (c in ColorTemplate.PASTEL_COLORS) colors.add(c)
+        colors.add(ColorTemplate.getHoloBlue())
+
+        val dataSet = PieDataSet(entries, "Election Results")
+        dataSet.colors = colors
+
+        val data = PieData(dataSet)
+        data.setValueTextSize(15f)
+        data.setValueTextColor(Color.BLACK)
+
+        binding.chartConsumptionHistory.data = data
+        binding.chartConsumptionHistory.description.isEnabled = false
+        binding.chartConsumptionHistory.isRotationEnabled = false
+        binding.chartConsumptionHistory.centerText = null
+        binding.chartConsumptionHistory.setEntryLabelColor(Color.BLACK)
+        binding.chartConsumptionHistory.animateY(1400, Easing.EaseInOutQuad)
+        binding.chartConsumptionHistory.animate()
     }
-
-    override fun onClick(v: View?) {
-    }
-
-
 }
