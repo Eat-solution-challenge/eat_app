@@ -24,7 +24,7 @@ class AmountRecordFragment : Fragment() {
         _binding = FragmentAmountRecordBinding.inflate(inflater, container, false)
         val rootView = binding.root
 
-        // Here you can access views using binding.textView1, binding.imageView3, etc.
+        // unit spinner
         binding.spinnerUnit.adapter = ArrayAdapter.createFromResource(requireContext(),
             R.array.unit, android.R.layout.simple_list_item_1)
 
@@ -77,6 +77,7 @@ class AmountRecordFragment : Fragment() {
         // maincategory는 서버로 전송만 필요
         args.putString("subCategory", getSubcategory())
         args.putString("menuName", getMenuName())
+        args.putString("unit",binding.spinnerUnit.selectedItem.toString())
         return args
     }
 

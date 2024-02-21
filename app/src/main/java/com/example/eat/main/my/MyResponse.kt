@@ -9,5 +9,7 @@ class MyResponse (
     val height : Long,
     val overEat : Long,
     val properEat : Long,
-    val lightEat : Long
+    val lightEat : Long,
+    val thisWeekTrashAmount: Double,
+    val lastWeekTrashAmount:Double
     )

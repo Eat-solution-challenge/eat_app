@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,12 +21,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eat.R
 import com.example.eat.databinding.FragmentFindAmountBinding
 import androidx.viewpager2.widget.ViewPager2
+import com.example.eat.RetrofitAPI
 import com.example.eat.databinding.DialogLayoutBinding
+import com.example.eat.login.token
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 // Import the AmountRecordFragment class
 import com.example.eat.main.findAmount.AmountRecordFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnItemClickListener {
 
@@ -104,6 +110,7 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
         ad.setPositiveButton("입력 완료") { dialog, which ->
             val result: String = dialogBinding.editText.text.toString()
             // 서버에 저장
+            postWasteOnServer(result.toDouble())
             dialog.dismiss()
         }
 
@@ -124,6 +131,28 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
                 super.onPageSelected(position)
                 isRunning = true
                 viewModel.setCurrentPosition(position)
+            }
+        })
+    }
+    private fun postWasteOnServer(waste:Double){
+        RetrofitAPI.getWasteServiceInstance().postWaste(
+            token,RequestWaste(waste)
+        ).enqueue(object : Callback<ResponseWaste> {
+            override fun onResponse(call: Call<ResponseWaste>, response: Response<ResponseWaste>) {
+                if (response.isSuccessful) {
+                    val myResponse = response.body()
+                    if (myResponse != null) {
+                        Toast.makeText(requireContext(),"저장을 완료했습니다.",Toast.LENGTH_SHORT).show()
+                        Log.d("데이터 로드 성공", "데이터 로드 성공")
+                    } else {
+                        Log.e("데이터 로드 실패", "응답 데이터가 null입니다.")
+                    }
+                } else {
+                    Log.e("데이터 로드 실패", "응답이 실패했습니다.")
+                }
+            }
+            override fun onFailure(call: Call<ResponseWaste>, t: Throwable) {
+                Log.e("실패 $t", t.message.toString())
             }
         })
     }

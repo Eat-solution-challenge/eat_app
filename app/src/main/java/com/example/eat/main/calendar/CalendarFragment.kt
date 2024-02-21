@@ -12,7 +12,9 @@ import com.example.eat.databinding.FragmentCalendarBinding
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 
 class CalendarFragment : Fragment() {
@@ -32,14 +34,13 @@ class CalendarFragment : Fragment() {
         binding.calendarView.setSelectedDate((CalendarDay.today()))
         binding.calendarView.addDecorators(SundayDecorator(), SaturdayDecorator())
         binding.calendarView.setOnDateChangedListener { widget, date, selected ->
-            val args=Bundle()
-            args.putInt("year", date.year)
-            args.putInt("month", date.month)
-            args.putInt("day", date.day)
-
-            calendar2Fragment.arguments = args
-            toCalendar2Fragment()
+            val formattedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date.date)
+            val args = Bundle().apply {
+                putString("date", formattedDate)
+            }
+            toCalendar2Fragment(args)
         }
+
 
         return binding.root
     }
@@ -69,9 +70,9 @@ class CalendarFragment : Fragment() {
     }
 
 
-    private fun toCalendar2Fragment() {
+    private fun toCalendar2Fragment(args: Bundle) {
+        calendar2Fragment.arguments = args
     // 미리 생성한 CheckRecordFragment의 arguments를 설정
-       // calendar2Fragment.arguments = createArguments()
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
     //main_container의 CheckRecordFragment로 transaction 한다.
         transaction.addToBackStack(null)    //back stack에 RecordFrament push

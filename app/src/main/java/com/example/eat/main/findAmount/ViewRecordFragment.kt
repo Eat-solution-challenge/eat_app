@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eat.R
 import com.example.eat.RetrofitAPI
 import com.example.eat.databinding.FragmentViewRecordBinding
+import com.example.eat.login.token
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -35,6 +36,7 @@ class ViewRecordFragment : Fragment() {
 
     lateinit var subCategory : String
     lateinit var menuName : String
+    lateinit var unit : String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +49,7 @@ class ViewRecordFragment : Fragment() {
         if (args != null) {
             subCategory = args!!.getString("subCategory", "")
             menuName = args!!.getString("menuName", "")
+            unit = args!!.getString("unit", "")
 
             binding.bfRecordedMenuname.text = menuName
             binding.bfRecordedSubcategory.text = subCategory
@@ -103,16 +106,15 @@ class ViewRecordFragment : Fragment() {
 
     private fun findAmount(){
 // ProperAmountResponse 및 ProperAmountService 정의
-
                 RetrofitAPI.getProperAmountInstance().getProperAmount(
-                    subCategory
+                    token,subCategory,unit
                 ).enqueue(object : Callback<ProperAmountResponse> {
                     override fun onResponse(call: Call<ProperAmountResponse>, response: Response<ProperAmountResponse>) {
                         if (response.isSuccessful) {
                             val myResponse = response.body()
                             if (myResponse != null) {
                                 //회원 정보 수정
-                                binding.kcal.text = myResponse.properAmount.toString()
+                                binding.kcal.text = myResponse.properAmount
                                 Log.d("데이터 로드 성공", "데이터 로드 성공")
                             } else {
                                 Log.e("데이터 로드 실패", "응답 데이터가 null입니다.")

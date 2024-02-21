@@ -128,7 +128,8 @@ class CheckRecordFragment: Fragment() {
             protein = args?.getString("protein", "")?.toDoubleOrNull() ?: 0.0,
             carbs = args?.getString("carbohydrate", "")?.toDoubleOrNull() ?: 0.0,
             sugar = args?.getString("sugar", "")?.toDoubleOrNull() ?: 0.0,
-            memo = args?.getString("memo", "") ?: ""
+            memo = args?.getString("memo", "") ?: "",
+            timeslot=args?.getString("time", "") ?: ""
         )
         RetrofitRecord(categoryID, recordRequest).work()
     }
