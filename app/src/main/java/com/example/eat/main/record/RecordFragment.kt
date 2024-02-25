@@ -104,6 +104,7 @@ class RecordFragment: Fragment() {
         args.putString("fat",binding.recordFat.text.toString())
         args.putString("protein",binding.recordProtein.text.toString())
         args.putString("sugar",binding.recordSugar.text.toString())
+        args.putString("date",binding.recordDate.text.toString())
         return args
     }
     override fun onSaveInstanceState(outState: Bundle) {   //recordFragment가 백스택에 배치될 때
