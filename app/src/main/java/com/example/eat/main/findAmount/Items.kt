@@ -6,11 +6,11 @@ import com.example.eat.R
 
 fun getBannerItemList(context: Context): List<BannerItem> {
     return listOf(
-        BannerItem(ContextCompat.getDrawable(context, R.drawable.banner_image1)!!),
-        BannerItem(ContextCompat.getDrawable(context, R.drawable.banner_image2)!!),
-        BannerItem(ContextCompat.getDrawable(context, R.drawable.banner_image_3)!!),
-        BannerItem(ContextCompat.getDrawable(context, R.drawable.banner_image4)!!),
-        BannerItem(ContextCompat.getDrawable(context, R.drawable.banner_image5)!!)
+        BannerItem(R.drawable.banner_image1),
+        BannerItem(R.drawable.banner_image2),
+        BannerItem(R.drawable.banner_image_3),
+        BannerItem(R.drawable.banner_image4),
+        BannerItem(R.drawable.banner_image5)
     )
 }
 val GridItemList = listOf(

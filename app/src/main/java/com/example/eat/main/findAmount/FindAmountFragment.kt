@@ -1,15 +1,12 @@
 package com.example.eat.main.findAmount
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.res.Resources
 import android.os.Bundle
-import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -37,7 +34,7 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
 
     private lateinit var viewPagerAdapter: FindAmountViewPagerAdapter
     private lateinit var gridRecyclerViewAdapter: GridRecyclerViewAdapter
-    private lateinit var viewModel: FIndAmountViewModel
+    private lateinit var viewModel: FindAmountViewModel
     private var _binding: FragmentFindAmountBinding? = null
     private val binding get() = _binding!!
     private var isRunning = true
@@ -63,9 +60,9 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
         val rootView = binding.root
 
         // ViewModel 초기화 및 옵저버 등록
-        viewModel = ViewModelProvider(this).get(FIndAmountViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FindAmountViewModel::class.java)
 
-        viewModel.setBannerItems(BannerItemList)
+        viewModel.setBannerItems(getBannerItemList(requireContext()))
         viewModel.setGridItems(GridItemList)
 
         initViewPager2() // ViewPager2 초기화를 onCreateView에서 호출하도록 이동

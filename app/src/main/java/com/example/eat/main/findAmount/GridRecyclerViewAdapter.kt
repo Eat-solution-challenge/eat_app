@@ -1,7 +1,5 @@
 package com.example.eat.main.findAmount
 
-import android.animation.Animator
-import android.animation.ObjectAnimator
 import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eat.R
-import kotlinx.coroutines.CoroutineScope
 
 
 class GridRecyclerViewAdapter : RecyclerView.Adapter<GridRecyclerViewAdapter.GridItemViewHolder>() {

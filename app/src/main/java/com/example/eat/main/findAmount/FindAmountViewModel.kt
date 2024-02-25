@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class FIndAmountViewModel : ViewModel() {
+class FindAmountViewModel : ViewModel() {
     private val _bannerItemList=MutableLiveData<List<BannerItem>>()
     private val _gridItemList= MutableLiveData<List<GridItem>>()
     private val _currentPosition=MutableLiveData<Int>()

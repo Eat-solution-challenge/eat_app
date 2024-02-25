@@ -35,7 +35,7 @@
         android:id="@+id/button_getLog"
         android:layout_width="173dp"
         android:layout_height="44dp"
-        android:backgroundTint="#E24E60C1"
+        android:backgroundTint="#B16863"
         android:text="섭취 기록 불러오기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

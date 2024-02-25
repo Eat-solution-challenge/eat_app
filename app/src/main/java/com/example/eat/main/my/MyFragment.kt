@@ -92,9 +92,8 @@ class MyFragment: Fragment() {
                             }
                         else
                             binding.textWaste.text="발생한 음식 폐기물의 양이 지난 주와 동일 합니다."
-
                         //폐기물 양 비교 문구 수정
-                        var change= lastWeekTrashAmount-thisWeekTrashAmount
+                        change= lastWeekTrashAmount-thisWeekTrashAmount
                         if(change>0)
                             binding.textWaste.text="지난 주보다 $change L 적은 음식 폐기물이 발생했습니다!"
                         else if(change<0) {
