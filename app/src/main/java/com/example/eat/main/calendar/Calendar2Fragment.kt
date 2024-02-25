@@ -64,43 +64,40 @@ class Calendar2Fragment : Fragment() {
                 if (response.isSuccessful) {
                     val calendarResponses = response.body()
                     if (calendarResponses != null && calendarResponses.isNotEmpty()) {
-
                         val iterator = calendarResponses.iterator()
-                        // UI에 바인딩할 데이터를 가져옴
-                        val dataForBinding = listOf(
-                            FiveTuple(binding.titleTime, binding.recordedMenu, binding.recordedConsumption,binding.recordedSatiety,binding.recordedCalorie),
-                            FiveTuple(binding.titleTime2, binding.recordedMenu2, binding.recordedConsumption2,binding.recordedSatiety2,binding.recordedCalorie2),
-                            FiveTuple(binding.titleTime3, binding.recordedMenu3, binding.recordedConsumption3,binding.recordedSatiety3,binding.recordedCalorie3)
-                        )
-                        // 데이터를 가져와 UI에 바인딩
-                        for ((title, menu, consumption, satiety, calorie) in dataForBinding) {
+                        var dataIndex = 0
+
+                        val titleList = listOf(binding.titleTime, binding.titleTime2, binding.titleTime3)
+                        val menuList = listOf(binding.recordedMenu, binding.recordedMenu2, binding.recordedMenu3)
+                        val consumptionList = listOf(binding.recordedConsumption, binding.recordedConsumption2, binding.recordedConsumption3)
+                        val satietyList = listOf(binding.recordedSatiety, binding.recordedSatiety2, binding.recordedSatiety3)
+                        val calorieList = listOf(binding.recordedCalorie, binding.recordedCalorie2, binding.recordedCalorie3)
+                        val titleCalorie = listOf(binding.titleCalorie, binding.titleCalorie2, binding.titleCalorie3)
+                        val titleConsumption = listOf(binding.titleConsumption, binding.titleConsumption2, binding.titleConsumption3)
+                        val titleMenu = listOf(binding.titleMenu, binding.titleMenu2, binding.titleMenu3)
+                        val titleSatiety = listOf(binding.titleSatiety, binding.titleSatiety2, binding.titleSatiety3)
+
+                        for ((index, title) in titleList.withIndex()) {
                             if (iterator.hasNext()) {
                                 val response = iterator.next()
-                                binding.recordDate.text=response.createdTime
+                                binding.recordDate.text = response.createdTime
                                 title.text = response.timeslot
-                                menu.text = response.menu
-                                consumption.text = "${response.intake} ${response.unit}"
-                                satiety.text=getSatiety(response.level)
-                                calorie.text=response.calorie.toString()
+                                menuList[index].text = response.menu
+                                consumptionList[index].text = "${response.intake} ${response.unit}"
+                                satietyList[index].text = getSatiety(response.level)
+                                calorieList[index].text = response.calorie.toString()
+                                dataIndex++
                             } else {
-                                // 응답 데이터가 부족할 경우 해당 UI를 숨김
+                                // 데이터가 부족한 경우 해당 UI를 숨김 또는 내용을 지움
                                 title.visibility = View.GONE
-                                menu.visibility = View.GONE
-                                consumption.visibility = View.GONE
-                                satiety.visibility = View.GONE
-                                calorie.visibility = View.GONE
-                                binding.titleCalorie.visibility = View.GONE
-                                binding.titleCalorie2.visibility = View.GONE
-                                binding.titleCalorie3.visibility = View.GONE
-                                binding.titleConsumption.visibility = View.GONE
-                                binding.titleConsumption2.visibility = View.GONE
-                                binding.titleConsumption3.visibility = View.GONE
-                                binding.titleMenu.visibility = View.GONE
-                                binding.titleMenu2.visibility = View.GONE
-                                binding.titleMenu3.visibility = View.GONE
-                                binding.titleSatiety.visibility = View.GONE
-                                binding.titleSatiety2.visibility = View.GONE
-                                binding.titleSatiety3.visibility = View.GONE
+                                menuList[index].visibility = View.GONE
+                                consumptionList[index].visibility = View.GONE
+                                satietyList[index].visibility = View.GONE
+                                calorieList[index].visibility = View.GONE
+                                titleCalorie[index].visibility = View.GONE
+                                titleConsumption[index].visibility = View.GONE
+                                titleMenu[index].visibility = View.GONE
+                                titleSatiety[index].visibility = View.GONE
                             }
                         }
                         Log.d("데이터 로드 성공", "데이터 로드 성공")
@@ -117,6 +114,7 @@ class Calendar2Fragment : Fragment() {
             }
         })
     }
+
 
     private fun getSatiety(level:String):String{
         return when(level){
