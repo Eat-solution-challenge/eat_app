@@ -1,1 +1,1 @@
-2024 google solution challenge eat server repo
+2024 google solution challenge eat app repo
