@@ -1,1 +1,6 @@
-2024 google solution challenge eat app repo
+📍 Version
+
+
+📱 How to install
+git clone
+git clone 
