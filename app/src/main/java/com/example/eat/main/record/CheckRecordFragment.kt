@@ -5,17 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.eat.R
 import com.example.eat.RetrofitAPI
 import com.example.eat.databinding.FragmentCheckRecordBinding
-import com.example.eat.login.LoginRequest
-import com.example.eat.login.LoginResponse
 import com.example.eat.login.token
 import com.example.eat.main.MainActivity
 import retrofit2.Call
 import retrofit2.Response
+
 
 class CheckRecordFragment: Fragment() {
     private val recordFragment: RecordFragment by lazy { RecordFragment() }
@@ -62,7 +62,6 @@ class CheckRecordFragment: Fragment() {
         }
         binding.saveRecord.setOnClickListener {
             saveData()  //저장
-
             // 백스택에 있는 항목 모두 종료
             requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
@@ -150,8 +149,11 @@ class RetrofitRecord(private val categoryId: Int, private val recordRequest: Rec
                 ) {
                     if (response.isSuccessful) {
                         val result = response.body()
+                        Toast.makeText(MainActivity(),"저장이 완료되었습니다.",Toast.LENGTH_SHORT)
                         Log.d("저장 성공", "$result")
                     }
+                    else
+                        Toast.makeText(MainActivity(),"내용을 전부 입력해주세요.",Toast.LENGTH_SHORT)
                 }
 
                 override fun onFailure(call: Call<RecordResponse>, t: Throwable) {

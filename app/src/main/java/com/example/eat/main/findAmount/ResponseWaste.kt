@@ -4,6 +4,6 @@ import java.time.LocalDateTime
 
 data class ResponseWaste (
     val id : Long,
-    val createdTime : LocalDateTime,
+    val createdTime : String,
     val amount : Double
 )

@@ -38,6 +38,8 @@
                 android:id="@+id/menuname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/nanumsquareneo_rg"
                 android:text="엽기 떡볶이"
                 android:textSize="24sp" />
 
@@ -51,20 +53,11 @@
                     android:id="@+id/amountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="213dp"
-                    android:layout_toStartOf="@+id/dateTextView"
-                    android:text="1/4통"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/nanumsquareneo_rg"
+                    android:text="1/4 통"
                     android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/dateTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:text="01월 01일"
-                    android:textColor="#E24E60C1"
-                    android:textSize="16sp" />
 
             </RelativeLayout>
 

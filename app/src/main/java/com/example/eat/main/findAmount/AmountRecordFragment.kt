@@ -8,9 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.eat.R
+import com.example.eat.RetrofitAPI
 import com.example.eat.databinding.FragmentAmountRecordBinding
+import com.example.eat.login.token
+import com.example.eat.main.record.CalorieResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AmountRecordFragment : Fragment() {
     private val viewRecordFragment: ViewRecordFragment by lazy { ViewRecordFragment() }
@@ -29,9 +36,26 @@ class AmountRecordFragment : Fragment() {
         binding.spinnerUnit.adapter = ArrayAdapter.createFromResource(requireContext(),
             R.array.unit, android.R.layout.simple_list_item_1)
 
-        binding.button3.setOnClickListener {
-            toViewRecordFinishFragment()// 기록 끝
+        binding.buttonSearch.setOnClickListener {
+            if(binding.menuname.text.isNotBlank()) {
+                getCalories(binding.menuname.text.toString())
+            }
+            else
+                Toast.makeText(requireContext(),"메뉴명을 입력해주세요.",Toast.LENGTH_SHORT).show()
         }
+
+        binding.buttonGetLog.setOnClickListener {
+            if(
+                binding.menuname.text.isNotBlank() &&
+                binding.kcal.text.isNotBlank() &&
+                binding.textViewSubcategory.text.isNotBlank()
+            ){
+                toViewRecordFinishFragment() // 기록 끝
+            }
+            else
+                Toast.makeText(requireContext(),"값을 모두 기입해주세요.",Toast.LENGTH_SHORT).show()
+        }
+
         // Get the position argument
         val position = arguments?.getInt(ARG_GRID_ITEM_POSITION) ?: -1
 
@@ -63,6 +87,32 @@ class AmountRecordFragment : Fragment() {
         return rootView
     }
 
+    private fun getCalories(menu: String) {
+        // Retrofit을 사용하여 API 호출하고 응답 처리
+        RetrofitAPI.getCalorieServiceInstance().getCalorieService(
+            token, menu
+        ).enqueue(object : Callback<List<CalorieResponse>> {
+            override fun onResponse(
+                call: Call<List<CalorieResponse>>,
+                response: Response<List<CalorieResponse>>
+            ) {
+                if (response.isSuccessful) {
+                    val calorieResponses = response.body()
+                    if (calorieResponses != null && calorieResponses.isNotEmpty()) {
+                        binding.kcal.setText(calorieResponses[0].calorie.toString())
+                    } else {
+                        Toast.makeText(requireContext(),"저장된 영양성분 값이 없습니다.",Toast.LENGTH_SHORT)
+                    }
+                } else {
+                    Log.e("데이터 로드 실패", "응답이 실패했습니다.")
+                }
+            }
+            override fun onFailure(call: Call<List<CalorieResponse>>, t: Throwable) {
+                Log.e("실패", t.message.toString())
+            }
+        })
+    }
+
     private fun toViewRecordFinishFragment() {
         viewRecordFragment.arguments = createArguments()
 
@@ -75,7 +125,7 @@ class AmountRecordFragment : Fragment() {
 
     private fun createArguments(): Bundle? {
         val args = Bundle()
-        // maincategory는 서버로 전송만 필요
+        args.putString("mainCategory", binding.maincategory.text.toString())
         args.putString("subCategory", getSubcategory())
         args.putString("menuName", getMenuName())
         args.putString("unit",binding.spinnerUnit.selectedItem.toString())

@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/chart_view"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,11 +10,10 @@
         android:id="@+id/background"
         android:layout_width="338dp"
         android:layout_height="211dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/bottom_nav_round"
         android:backgroundTint="#22FFEB3B"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,10 +26,9 @@
             android:layout_marginTop="20dp"
             android:text="01월 01일"
             android:textColor="#E24E60C1"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.134"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="17sp"
+
+            app:layout_constraintStart_toStartOf="@+id/memoText"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -39,21 +36,23 @@
             android:layout_width="67dp"
             android:layout_height="67dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="36dp"
             android:layout_marginTop="12dp"
+            android:layout_marginStart="35dp"
             android:padding="5dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/dateTextView"
             app:layout_constraintTop_toBottomOf="@+id/dateTextView"
             app:srcCompat="@drawable/korean_snack" />
 
         <TextView
             android:id="@+id/menuname2"
-            android:layout_width="142dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginEnd="80dp"
+            android:fontFamily="@font/nanumsquareneo_rg"
+            android:gravity="bottom|center"
             android:text="엽기 떡볶이"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            app:layout_constraintStart_toEndOf="@+id/maincategory_picture"
             app:layout_constraintTop_toTopOf="@+id/maincategory_picture" />
 
         <TextView
@@ -63,10 +62,23 @@
             android:layout_marginStart="28dp"
             android:layout_marginBottom="4dp"
             android:layout_toStartOf="@+id/dateTextView"
-            android:text="1/4통"
+            android:text="1/4"
+            android:fontFamily="@font/nanumsquareneo_rg"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/maincategory_picture"
             app:layout_constraintStart_toStartOf="@+id/menuname2" />
+
+        <TextView
+            android:id="@+id/amountunit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_toStartOf="@+id/dateTextView"
+            android:text="통"
+            android:fontFamily="@font/nanumsquareneo_rg"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/amountTextView"
+            app:layout_constraintStart_toEndOf="@+id/amountTextView" />
 
         <TextView
             android:id="@+id/memoText"
@@ -78,7 +90,7 @@
             android:layout_marginBottom="1dp"
             android:text="메모"
             android:textColor="#E24E60C1"
-            android:textSize="16sp"
+            android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@+id/memoTextView"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -86,27 +98,35 @@
             android:id="@+id/memoTextView"
             android:layout_width="305dp"
             android:layout_height="55dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginHorizontal="4dp"
+            android:fontFamily="@font/kingsejonginstitute_regular"
             android:text="다음 번에는 떡볶이를 더 달라고 해야겠다."
-            android:textSize="15sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.647"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/memoText" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/chart_consumptionHistory"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="341dp"
-        android:layout_height="169dp"
-        android:layout_marginBottom="60dp"
+        android:layout_height="300dp"
+        android:background="#11E91E1E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/background"
-        app:layout_constraintVertical_bias="0.193"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart_nutrients"
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:paddingVertical="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/background"
+     ></com.github.mikephil.charting.charts.PieChart>
+    </androidx.constraintlayout.widget.ConstraintLayout>
