@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -158,7 +159,6 @@ class ViewRecordFragment : Fragment() {
             }
         })
     }
-
     private fun getName() {
         RetrofitAPI.getMyServiceInstance().getMy(
             token
@@ -196,11 +196,16 @@ class ViewRecordFragment : Fragment() {
                 if (response.isSuccessful) {
                     val myResponse = response.body()
                     if (myResponse != null) {
-                        binding.kcal.setText(
-                            Math.round(myResponse.properAmount.toDouble())
-                                .toString() + myResponse.unit
-                        )
-                        Log.d("데이터 로드 성공", "데이터 로드 성공")
+                        if(myResponse.properAmount.toDouble() == 0.0){
+                            Toast.makeText(requireContext(),"$subCategory 를 섭취한 적이 없습니다.\n기록을 남겨주세요!",Toast.LENGTH_SHORT).show()
+                        }
+                        else {
+                            binding.kcal.setText(
+                                Math.round(myResponse.properAmount.toDouble())
+                                    .toString() + myResponse.unit
+                            )
+                            Log.d("데이터 로드 성공", "데이터 로드 성공")
+                        }
                     } else {
                         Log.e("데이터 로드 실패", "응답 데이터가 null입니다.")
                     }
