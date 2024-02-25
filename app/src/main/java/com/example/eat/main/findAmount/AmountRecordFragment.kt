@@ -74,7 +74,7 @@ class AmountRecordFragment : Fragment() {
 
     private fun createArguments(): Bundle? {
         val args = Bundle()
-        // maincategory는 서버로 전송만 필요
+        args.putString("mainCategory", binding.maincategory.text.toString())
         args.putString("subCategory", getSubcategory())
         args.putString("menuName", getMenuName())
         args.putString("unit",binding.spinnerUnit.selectedItem.toString())

@@ -20,15 +20,15 @@ class ChartViewRecordFragment : Fragment() {
         fun newInstance(
             menuName: String,
             amount: String,
-            createDate: String,
+            unit: String,
             mainCategory: Int
         ): ChartViewRecordFragment {
             val fragment = ChartViewRecordFragment()
             val args = Bundle()
-            args.putString("menuName", menuName)
-            args.putString("amount", amount)
-            args.putString("createDate", createDate)
-            args.putInt("mainCategory", mainCategory)
+            args.getString("menuName", menuName)
+            args.getString("amount", amount)
+            args.getString("unit", unit)
+            args.getInt("mainCategory", mainCategory)
             fragment.arguments = args
             return fragment
         }

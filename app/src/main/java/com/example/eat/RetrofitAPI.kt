@@ -3,10 +3,11 @@ package com.example.eat
 import com.example.eat.login.JoinService
 import com.example.eat.login.LoginService
 import com.example.eat.main.calendar.CalendarService
-import com.example.eat.main.record.CategoryIdService
 import com.example.eat.main.record.RecordService
 import com.example.eat.main.my.MyService
 import com.example.eat.main.findAmount.ProperAmountService
+import com.example.eat.main.findAmount.SubLogService
+import com.example.eat.main.findAmount.SubcategoryIdService
 import com.example.eat.main.findAmount.WasteService
 import com.example.eat.main.record.CalorieService
 import okhttp3.OkHttpClient
@@ -57,12 +58,12 @@ object RetrofitAPI {
         return recordService
     }
 
-    private val categoryIdService : CategoryIdService by lazy {
-        retrofit.create(categoryIdService::class.java)
+    private val subcategoryIdService : SubcategoryIdService by lazy {
+        retrofit.create(SubcategoryIdService::class.java)
     }
 
-    fun getCategoryIdServiceInstance(): CategoryIdService {
-        return categoryIdService
+    fun getSubcategoryIdServiceInstance(): SubcategoryIdService {
+        return subcategoryIdService
     }
 
     fun getMyServiceInstance(): MyService {
@@ -83,5 +84,9 @@ object RetrofitAPI {
 
     fun getCalorieServiceInstance(): CalorieService {
         return retrofit.create(CalorieService::class.java)
+    }
+
+    fun getSubLogServiceInstance(): SubLogService {
+        return retrofit.create(SubLogService::class.java)
     }
 }

@@ -76,7 +76,6 @@ class CalendarFragment : Fragment() {
         }
     }
 
-
     private fun toCalendar2Fragment(args: Bundle,date:String) {
         RetrofitAPI.getCalendarServiceInstance().getCalendar(
             token,

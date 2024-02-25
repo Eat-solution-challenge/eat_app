@@ -63,10 +63,21 @@
             android:layout_marginStart="28dp"
             android:layout_marginBottom="4dp"
             android:layout_toStartOf="@+id/dateTextView"
-            android:text="1/4통"
+            android:text="1/4"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/maincategory_picture"
             app:layout_constraintStart_toStartOf="@+id/menuname2" />
+
+        <TextView
+            android:id="@+id/amountunit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_toStartOf="@+id/dateTextView"
+            android:text="통"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/amountTextView"
+            app:layout_constraintStart_toEndOf="@+id/amountTextView" />
 
         <TextView
             android:id="@+id/memoText"
@@ -106,7 +117,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/background"
-        app:layout_constraintVertical_bias="0.193"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.193" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

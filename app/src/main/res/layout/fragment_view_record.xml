@@ -23,25 +23,24 @@
         android:id="@+id/kcal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="220dp"
+        android:layout_marginStart="6dp"
         android:text="450kcal"
         android:textColor="#99B80606"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toBottomOf="@+id/bf_recorded_menuname"
+        app:layout_constraintStart_toEndOf="@+id/bf_recorded_menuname" />
 
     <TextView
         android:id="@+id/bf_recorded_menuname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="엽기떡볶이 "
-        android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/kcal"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="97dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="13dp"
+        android:gravity="bottom"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="20sp"
+        android:autoSizeTextType="uniform"
+        android:text="엽기떡볶이"
         app:layout_constraintStart_toStartOf="@+id/guideline13"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -49,14 +48,11 @@
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:text="가 적정량입니다."
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/kcal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginStart="0dp"
+        android:text="(이)가 적정량입니다."
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bf_recorded_menuname"
+        app:layout_constraintStart_toEndOf="@+id/kcal" />
 
     <TextView
         android:id="@+id/text1"
@@ -94,13 +90,12 @@
         android:id="@+id/text3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="2dp"
         android:layout_marginBottom="16dp"
         android:text="님의"
         android:textSize="17dp"
         app:layout_constraintStart_toEndOf="@+id/name2"
-        app:layout_constraintTop_toTopOf="@+id/name2"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="@+id/name2" />
 
     <TextView
         android:id="@+id/bf_recorded_subcategory"
@@ -110,6 +105,7 @@
         android:layout_marginBottom="16dp"
         android:text="떡볶이"
         android:textSize="17dp"
+        android:gravity="bottom"
         app:layout_constraintStart_toEndOf="@+id/text3"
         app:layout_constraintTop_toTopOf="@+id/text3" />
 
@@ -144,8 +140,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="390dp"
-        android:layout_height="394dp"
+        android:layout_width="407dp"
+        android:layout_height="461dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -153,8 +149,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="417dp"
-        android:layout_height="394dp"
+        android:layout_width="415dp"
+        android:layout_height="480dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -1,4 +1,3 @@
-import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -11,7 +10,7 @@ class ContactsViewHolder(private val binding: ItemContactsBinding, private val f
     fun bind(item: Contacts) {
         binding.menuname.text = item.menuName ?: "" // Nullable String 처리
         binding.amountTextView.text = item.amount ?: "" // Nullable String 처리
-        binding.dateTextView.text = item.createDateStr ?: "" // Nullable String 처리
+        binding.amountunit.text = item.unit ?: ""
         binding.maincategoryPicture.setImageResource(item.mainCategory)
 
         binding.root.setOnClickListener {
@@ -21,7 +20,7 @@ class ContactsViewHolder(private val binding: ItemContactsBinding, private val f
             val fragment = ChartViewRecordFragment.newInstance(
                 item.menuName ?: "", // 메뉴 이름
                 item.amount ?: "", // 수량
-                item.createDateStr ?: "", // 날짜
+                item.unit?:"",
                 item.mainCategory // 메인 카테고리 이미지 리소스 ID
             )
             fragmentTransaction.replace(R.id.main_container, fragment)
@@ -31,3 +30,4 @@ class ContactsViewHolder(private val binding: ItemContactsBinding, private val f
         }
     }
 }
+
