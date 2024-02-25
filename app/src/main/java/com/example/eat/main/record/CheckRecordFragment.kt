@@ -32,6 +32,7 @@ class CheckRecordFragment: Fragment() {
 
         args = arguments    //RecordFragment에서 저장된 bundle객체
         if (args != null) {
+            val date = args!!.getString("date", "")
             val time = args!!.getString("time", "")
             val mainCategory = args!!.getString("mainCategory", "")
             val subCategory = args!!.getString("subCategory", "")
@@ -46,6 +47,7 @@ class CheckRecordFragment: Fragment() {
             val protein = args!!.getString("protein", "")
             val sugar = args!!.getString("sugar", "")
 
+            binding.recordDate.text=date
             binding.selectedTime.text=time
             binding.recordedCategory.text=mainCategory+"/   "+subCategory
             binding.recordedConsumption.text=consumption+" "+consumptionUnit
