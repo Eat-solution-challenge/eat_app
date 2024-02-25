@@ -61,7 +61,7 @@
         android:text="섭취량 현황"
         android:background="@drawable/text_background"
         android:textColor="#37201F"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:fontFamily="@font/nanumsquareneo_rg"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
@@ -70,6 +70,7 @@
         android:id="@+id/chart_consumption"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginVertical="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
@@ -85,7 +86,7 @@
         android:text="지난 주보다 3L 적은 음식 폐기물이 발생했습니다!"
         android:background="@drawable/text_background"
         android:textColor="@color/black"
-        android:textSize="17.4sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toBottomOf="@+id/chart_consumption" />
@@ -152,7 +153,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="@+id/guideline8"
-        android:src="@drawable/ic_android_black_24dp" />
+        android:src="@drawable/eat1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

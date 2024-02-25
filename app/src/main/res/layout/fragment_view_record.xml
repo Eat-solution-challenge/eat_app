@@ -8,12 +8,14 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="65dp"
         android:text="이화연"
         android:textColor="#99B80606"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
+        android:gravity="bottom"
+        android:fontFamily="@font/nanumsquareneo_rg"
         app:layout_constraintEnd_toStartOf="@+id/text1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline13"
@@ -22,56 +24,59 @@
     <TextView
         android:id="@+id/kcal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="31dp"
         android:layout_marginStart="6dp"
+        android:fontFamily="@font/nanumsquareneo_rg"
+        android:gravity="center_vertical"
         android:text="450kcal"
         android:textColor="#99B80606"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bf_recorded_menuname"
-        app:layout_constraintStart_toEndOf="@+id/bf_recorded_menuname" />
+        app:layout_constraintStart_toEndOf="@+id/bf_recorded_menuname"
+        app:layout_constraintTop_toTopOf="@+id/bf_recorded_menuname" />" />
 
     <TextView
         android:id="@+id/bf_recorded_menuname"
-        android:layout_width="97dp"
+        android:layout_width="wrap_content"
         android:layout_height="31dp"
         android:layout_marginTop="13dp"
-        android:gravity="bottom"
-        android:autoSizeMaxTextSize="30sp"
-        android:autoSizeMinTextSize="20sp"
-        android:autoSizeTextType="uniform"
+        android:textSize="20sp"
         android:text="엽기떡볶이"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/nanumsquareneo_rg"
         app:layout_constraintStart_toStartOf="@+id/guideline13"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <TextView
         android:id="@+id/text2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="4dp"
+        android:gravity="center_vertical"
         android:text="(이)가 적정량입니다."
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/bf_recorded_menuname"
-        app:layout_constraintStart_toEndOf="@+id/kcal" />
+        app:layout_constraintStart_toEndOf="@+id/kcal"
+        app:layout_constraintTop_toTopOf="@+id/bf_recorded_menuname"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="276dp"
-        android:text="님은"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="27dp"
+        android:text=" 님은"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/name"
+        app:layout_constraintStart_toEndOf="@id/name"
+        app:layout_constraintTop_toTopOf="@+id/name" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="21dp" />
+        app:layout_constraintGuide_begin="16dp" />
 
 
     <TextView
@@ -80,6 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="이화연"
+        android:fontFamily="@font/nanumsquareneo_rg"
         android:textColor="#99B80606"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -93,6 +99,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginBottom="16dp"
         android:text="님의"
+        android:fontFamily="@font/nanumsquareneo_rg"
         android:textSize="17dp"
         app:layout_constraintStart_toEndOf="@+id/name2"
         app:layout_constraintTop_toTopOf="@+id/name2" />
@@ -101,11 +108,11 @@
         android:id="@+id/bf_recorded_subcategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/nanumsquareneo_bd"
+        android:gravity="bottom"
         android:text="떡볶이"
         android:textSize="17dp"
-        android:gravity="bottom"
         app:layout_constraintStart_toEndOf="@+id/text3"
         app:layout_constraintTop_toTopOf="@+id/text3" />
 
@@ -113,11 +120,10 @@
         android:id="@+id/text4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/nanumsquareneo_rg"
         android:text="식사 기록"
         android:textSize="17dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.037"
         app:layout_constraintStart_toEndOf="@+id/bf_recorded_subcategory"
         app:layout_constraintTop_toTopOf="@+id/name2" />
 
@@ -126,24 +132,25 @@
         android:layout_width="66dp"
         android:layout_height="30dp"
         android:layout_marginHorizontal="110dp"
-        android:layout_marginTop="192dp"
         android:layout_marginEnd="13dp"
         android:background="#46FFEB3B"
         android:fontFamily="@font/nanumsquareneo_bd"
         android:text="다시 검색"
         android:textColor="#EE2E2420"
         android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toEndOf="@+id/text4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/text4" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="407dp"
         android:layout_height="461dp"
+        android:layout_marginTop="28dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -153,7 +160,8 @@
         android:layout_height="480dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

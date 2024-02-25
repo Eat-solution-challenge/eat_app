@@ -72,10 +72,10 @@ class ViewRecordFragment : Fragment() {
         getName()
         findAmount()
         getSubcategoryID(getCategoryID(mainCategory), subcategory = subCategory)
-        getSubLog(subcategoryID)
     }
 
     // 서버에서 subcategoryID를 가져오는 함수
+    // getSubcategoryID 콜백 내에서 getSubLog 호출
     private fun getSubcategoryID(categoryId: Int, subcategory: String) {
         RetrofitAPI.getSubcategoryIdServiceInstance().getSubcategoryID(
             token, categoryId
@@ -88,8 +88,10 @@ class ViewRecordFragment : Fragment() {
                     val idResponses = response.body()
                     if (idResponses != null) {
                         val matchingSubcategory = idResponses.find { it.name == subcategory }
-                        if (matchingSubcategory != null)
+                        if (matchingSubcategory != null) {
                             subcategoryID = matchingSubcategory.id
+                            getSubLog(subcategoryID) // getSubcategoryID 콜백 내에서 getSubLog 호출
+                        }
                         Log.d("데이터 로드 성공", "데이터 로드 성공")
                     } else {
                         Log.e("데이터 로드 실패", "응답 데이터가 null입니다.")
@@ -135,12 +137,14 @@ class ViewRecordFragment : Fragment() {
                     val logResponses = response.body()
                     if (logResponses != null) {
                         contactsList = logResponses.map {
-                            Contacts(it.menu, it.intake.toString(), it.unit, getImage(mainCategory))
+                            Contacts(it.menu, it.intake.toString(), it.unit, getImage(mainCategory),
+                                it.createdTime,it.carbs,it.protein,it.fat,it.memo)
                         }
                         adapter.setData(contactsList)
                         val itemCount = adapter.itemCount
                         Log.d("Item Count", "현재 아이템 수: $itemCount")
                         Log.d("데이터 로드 성공", "데이터 로드 성공")
+
                     } else {
                         Log.e("데이터 로드 실패", "응답 데이터가 null입니다.")
                     }

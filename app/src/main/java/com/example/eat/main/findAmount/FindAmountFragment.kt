@@ -108,11 +108,18 @@ class FindAmountFragment: Fragment(), Interaction, GridRecyclerViewAdapter.OnIte
         ad.setView(dialogView)
 
         ad.setPositiveButton("입력 완료") { dialog, which ->
-            val result: String = dialogBinding.editText.text.toString()
-            // 서버에 저장
-            postWasteOnServer(result.toDouble())
-            dialog.dismiss()
+            val resultString: String = dialogBinding.editText.text.toString()
+            try {
+                val resultDouble: Double = resultString.toDouble()
+                // 입력된 값이 숫자로 변환될 수 있는 경우에만 서버에 전송
+                postWasteOnServer(resultDouble)
+                dialog.dismiss()
+            } catch (e: NumberFormatException) {
+                // 숫자로 변환할 수 없는 경우에 대한 예외 처리
+                Toast.makeText(requireContext(), "숫자를 입력하세요.", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
         ad.setNegativeButton("돌아가기") { dialog, which ->
             dialog.dismiss()

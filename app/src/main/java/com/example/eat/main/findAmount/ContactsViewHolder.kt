@@ -9,8 +9,7 @@ import com.example.eat.main.findAmount.Contacts
 class ContactsViewHolder(private val binding: ItemContactsBinding, private val fragmentActivity: FragmentActivity) : RecyclerView.ViewHolder(binding.root) {
     fun bind(item: Contacts) {
         binding.menuname.text = item.menuName ?: "" // Nullable String 처리
-        binding.amountTextView.text = item.amount ?: "" // Nullable String 처리
-        binding.amountunit.text = item.unit ?: ""
+        binding.amountTextView.text = item.amount +" "+item.unit?: "" // Nullable String 처리
         binding.maincategoryPicture.setImageResource(item.mainCategory)
 
         binding.root.setOnClickListener {
@@ -21,7 +20,12 @@ class ContactsViewHolder(private val binding: ItemContactsBinding, private val f
                 item.menuName ?: "", // 메뉴 이름
                 item.amount ?: "", // 수량
                 item.unit?:"",
-                item.mainCategory // 메인 카테고리 이미지 리소스 ID
+                item.mainCategory, // 메인 카테고리 이미지 리소스 ID
+                item.createdTime,
+                item.carbs,
+                item.protein,
+                item.fat,
+                item.memo
             )
             fragmentTransaction.replace(R.id.main_container, fragment)
             fragmentTransaction.addToBackStack(null)

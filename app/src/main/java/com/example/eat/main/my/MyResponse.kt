@@ -11,5 +11,5 @@ class MyResponse (
     val properEat : Long,
     val lightEat : Long,
     val thisWeekTrashAmount: Double,
-    val lastWeekTrashAmount:Double
+    val lastWeekTrashAmount : Double
     )
