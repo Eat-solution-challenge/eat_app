@@ -1,6 +1,8 @@
-📍 Version
+## 📍 Version
+- 
 
-
-📱 How to install
+## 📱 How to install
 1. git clone
-git clone https://github.com/Eat-solution-challenge/eat_app.git
+   ```
+   git clone https://github.com/Eat-solution-challenge/eat_app.git
+   ```
